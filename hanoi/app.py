@@ -9,8 +9,8 @@ class App(ctk.CTk):
 
     self.title("Hanoi mockup")
     self.geometry("1920x1080")
-    #self.resizable(False, False)
-    self.attributes("-fullscreen", True)
+    self.resizable(False, False)
+    #self.attributes("-fullscreen", True)
 
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")

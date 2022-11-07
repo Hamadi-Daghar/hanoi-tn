@@ -15,7 +15,7 @@ class InfoFrame(ctk.CTkFrame):
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Tours de Hanoï", 
-      text_font = font.Font(size = 40, weight = "bold")
+      text_font = font.Font(size = 40, weight = "bold", family = "Segoe UI")
     )
     self.title.grid(
       column = 0, row = 0,

@@ -19,17 +19,20 @@ class RightFrame(ctk.CTkFrame):
 
     self.cross_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "cross.png"),
-    ).subsample(2)
+    ).subsample(3)
     self.larger_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "larger.png"),
-    ).subsample(2)
+    ).subsample(3)
     self.smaller_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "smaller.png"),
-    ).subsample(2)
+    ).subsample(3)
 
 
     self.window_button = ctk.CTkButton(
       self, text = "",
+      corner_radius = 15,
+      fg_color = "#00FFFF",
+      hover_color = "#40E0D0",
       image = self.smaller_icon,
       command = self.toggle_window
     )
@@ -40,6 +43,9 @@ class RightFrame(ctk.CTkFrame):
 
     self.quit_button = ctk.CTkButton(
       self, text = "",
+      corner_radius = 15,
+      fg_color = "#DC143C",
+      hover_color = "#B22222",
       image = self.cross_icon,
       command = exit
     )
