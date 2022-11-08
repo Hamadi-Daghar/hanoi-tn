@@ -51,7 +51,7 @@ class RightFrame(ctk.CTkFrame):
       sticky = ctk.W, padx = 5
     )
 
-    self.info_frame = info_frame.InfoFrame(self)
+    self.info_frame = info_frame.InfoFrame(self, speed_var)
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
       sticky = ctk.N + ctk.EW

@@ -3,6 +3,7 @@ import customtkinter as ctk
 import hanoi.interface.bottom_frame as bottom_frame
 import hanoi.interface.hanoi_canvas as  hanoi_canvas
 import hanoi.interface.right_frame as right_frame 
+import hanoi.logic.state as state
 
 class App(ctk.CTk):
   
@@ -18,7 +19,7 @@ class App(ctk.CTk):
     ctk.set_default_color_theme("dark-blue")
 
     
-    self.count = 0
+    # self.count = 0
     self.move_display = False
     self.speed_var = ctk.IntVar(self, value = 1)
 
@@ -48,7 +49,8 @@ class App(ctk.CTk):
     self.update_display()
   
   def update_display(self):
-    self.right_frame.info_frame.update_display(self.count, self.move_display)
+    print("speed_var : ", self.speed_var.get())
+    self.right_frame.info_frame.update_display(state.State.state, self.move_display)
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (self.move_display) else "Mouvements")
     )

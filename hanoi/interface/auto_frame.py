@@ -75,3 +75,4 @@ class AutoFrame(ctk.CTkFrame):
 
   def update_speed(self, value):
     self.speed_var.set(int(10**value))
+    self.parent.parent.update_display()

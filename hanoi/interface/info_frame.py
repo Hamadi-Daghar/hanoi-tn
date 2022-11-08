@@ -2,9 +2,11 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
+import hanoi.logic.temporality as temporality
+
 class InfoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, *args, **kwargs):
+  def __init__(self, parent, speed_var, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -12,6 +14,7 @@ class InfoFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3,4), weight = 1)
 
     self.parent = parent
+    self.speed_var = speed_var
 
     #titre
     self.title = ctk.CTkLabel(
@@ -25,7 +28,7 @@ class InfoFrame(ctk.CTkFrame):
 
     #progression
     self.progress = ctk.CTkLabel(
-      self, text = "0,00324 %",
+      self, text = "default %",
       text_color = "green",
       text_font = font.Font(size = 50)
     )
@@ -58,7 +61,7 @@ class InfoFrame(ctk.CTkFrame):
 
     #temps restant
     self.remaining_time = ctk.CTkLabel(
-      self, text = "Temps restant :\nuhzeuif",
+      self, text = "Temps restant :\ndefault",
       text_font = font.Font(size = 20)
     )
     self.remaining_time.grid(
@@ -66,13 +69,23 @@ class InfoFrame(ctk.CTkFrame):
       pady = 10
     )
   
-  def update_display(self, count, move_display):
+  def update_display(self, state, move_display):
+    
+    self.progress.configure(
+      text = f"{ format( round(((state)/(2**20 - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
+      # text = format( round(((state+1)/(2**20))*100, 6), 'f').rstrip('0').rstrip('.') + " %"
+    )
 
     self.main_state.configure(text = (
-      f"Mouvement #{count + 1}" if move_display else 
-      f"État #{count + 1}"
+      f"Mouvement #{state + 1}" if move_display else 
+      f"État #{state + 1}"
     ))
+
     self.secondary_state.configure(text = (
-      f"État {count + 1} -> État {count + 2}" if move_display else
-      f"Obtenu après {count} mouvements"
+      f"État {state + 1} -> État {state + 2}" if move_display else
+      f"Obtenu après \n{state} mouvements"
+    ))
+
+    self.remaining_time.configure(text = (
+      "Temps restant :\n" + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
     ))
