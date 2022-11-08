@@ -21,3 +21,7 @@ Exécuter le programme :
 ```
 py -m hanoi
 ```
+
+## Maquette
+
+[Maquette Figma](https://www.figma.com/file/jT2H6aF2c8Ud4wa9nT9Aj4/Tours-de-Hano%C3%AF)
