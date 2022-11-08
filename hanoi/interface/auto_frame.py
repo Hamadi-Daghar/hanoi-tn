@@ -18,15 +18,15 @@ class AutoFrame(ctk.CTkFrame):
 
     self.play_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "right.png")
-    )
+    ).subsample(2)
 
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Auto",
-      text_font = font.Font(size = 30, weight = "bold")
+      text_font = font.Font(size = 25, weight = "bold")
     )
     self.title.grid(
-      column = 0, row = 0, columnspan = 2,
+      column = 0, row = 0, columnspan = 1,
       pady = 10, sticky = ctk.W
     )
 
