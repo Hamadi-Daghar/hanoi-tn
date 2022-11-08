@@ -1,5 +1,6 @@
-import customtkinter as ctk
 import tkinter.font as font
+
+import customtkinter as ctk
 
 class InfoFrame(ctk.CTkFrame):
 

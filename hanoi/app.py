@@ -1,6 +1,8 @@
 import customtkinter as ctk
 
-from hanoi.interface import bottom_frame, right_frame, hanoi_canvas
+import hanoi.interface.bottom_frame as bottom_frame
+import hanoi.interface.hanoi_canvas as  hanoi_canvas
+import hanoi.interface.right_frame as right_frame 
 
 class App(ctk.CTk):
   

@@ -1,7 +1,8 @@
-import tkinter as tk
-import customtkinter as ctk
-import tkinter.font as font
 import os
+import tkinter as tk
+import tkinter.font as font
+
+import customtkinter as ctk
 
 class AutoFrame(ctk.CTkFrame):
 
