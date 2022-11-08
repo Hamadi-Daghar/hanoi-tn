@@ -12,14 +12,13 @@ class App(ctk.CTk):
     self.resizable(False, False)
     #self.attributes("-fullscreen", True)
 
+    self.fg_color = "#EBEBEC"
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
-
     
     self.count = 0
     self.move_display = False
     self.speed_var = ctk.IntVar(self, value = 1)
-
 
     #grid
     self.columnconfigure(0, weight = 0)
@@ -32,18 +31,20 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self)
+    self.bottom_frame = bottom_frame.BottomFrame(self, fg_color = "#EBEBEC")
     self.bottom_frame.grid(
       column = 0, row = 1, 
-      padx = 100, pady = 10
+      padx = 88, pady = 10
     )
-
+    
     #right frame
-    self.right_frame = right_frame.RightFrame(self, self.speed_var)
+    self.right_frame = right_frame.RightFrame(self, self.speed_var, fg_color = "#EBEBEC")
     self.right_frame.grid(
       column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
     )
+    
     self.update_display()
+    
   
   def update_display(self):
     self.right_frame.info_frame.update_display(self.count, self.move_display)

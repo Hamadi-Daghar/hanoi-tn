@@ -22,7 +22,7 @@ class AutoFrame(ctk.CTkFrame):
 
     #titre
     self.title = ctk.CTkLabel(
-      self, text = "Auto", 
+      self, text = "Auto",
       text_font = font.Font(size = 30, weight = "bold")
     )
     self.title.grid(
@@ -33,8 +33,9 @@ class AutoFrame(ctk.CTkFrame):
 
     self.auto_button = ctk.CTkButton(
       self, 
+      text = "Lancer", 
       image = self.play_icon, 
-      text = "Lancer", text_font = font.Font(size = 25),
+      text_font = font.Font(size = 25),
     )
     self.auto_button.grid(
       column = 0, row = 1, columnspan = 2,

@@ -54,19 +54,19 @@ class RightFrame(ctk.CTkFrame):
       sticky = ctk.W, padx = 5
     )
 
-    self.info_frame = info_frame.InfoFrame(self)
+    self.info_frame = info_frame.InfoFrame(self, fg_color = "#EBEBEC")
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
       sticky = ctk.N + ctk.EW
     )
 
-    self.auto_frame = auto_frame.AutoFrame(self, speed_var)
+    self.auto_frame = auto_frame.AutoFrame(self, speed_var, fg_color = "#EBEBEC")
     self.auto_frame.grid(
       column = 0, row = 2, columnspan = 2,
       sticky = ctk.EW
     )
 
-    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self)
+    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, fg_color = "#EBEBEC")
     self.fil_rouge_frame.grid(
       column = 0, row = 3, columnspan = 2,
       sticky = ctk.EW
