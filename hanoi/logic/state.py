@@ -17,3 +17,6 @@ class State():
   
   def end_state():
     State.state = 2**20 - 1
+  
+  def is_end_state():
+    return State.state == 2**20 - 1

@@ -35,7 +35,7 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self)
+    self.bottom_frame = bottom_frame.BottomFrame(self, self.speed_var)
     self.bottom_frame.grid(
       column = 0, row = 1, 
       padx = 100, pady = 10
