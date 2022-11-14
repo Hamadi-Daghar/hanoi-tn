@@ -19,7 +19,6 @@ class AutoFrame(ctk.CTkFrame):
     self.parent = parent
     self.speed_var = speed_var
     self.auto_mode = False
-     
     self.steps = { #speed : (delay, step)
       1 : (1000, 1),
       10 : (100, 1),
@@ -29,23 +28,23 @@ class AutoFrame(ctk.CTkFrame):
 
     self.play_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "right.png")
-    )
+    ).subsample(2)
 
     #titre
     self.title = ctk.CTkLabel(
-      self, text = "Auto", 
-      text_font = font.Font(size = 30, weight = "bold")
+      self, text = "Auto",
+      text_font = font.Font(size = 2, weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0, columnspan = 2,
       pady = 10, sticky = ctk.W
     )
 
-
     self.auto_button = ctk.CTkButton(
       self, 
+      text = "Lancer", 
       image = self.play_icon, 
-      text = "Lancer", text_font = font.Font(size = 25),
+      text_font = font.Font(size = 25),
       command = self.toggle_auto
     )
     self.auto_button.grid(
