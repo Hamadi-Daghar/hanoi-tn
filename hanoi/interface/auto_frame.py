@@ -44,7 +44,7 @@ class AutoFrame(ctk.CTkFrame):
       self, 
       text = "Lancer", 
       image = self.play_icon, 
-      text = "Lancer", text_font = font.Font(size = 25),
+      text_font = font.Font(size = 25),
       command = self.toggle_auto
     )
     self.auto_button.grid(
