@@ -35,9 +35,9 @@ def render_time(seconds: int)-> str:
   if values[0] != 0: #jours
     return f"{values[0]} jour{plural(values[0])} {values[1]} heure{plural(values[1])}\n{values[2]} minute{plural(values[2])} {values[3]} seconde{plural(values[3])}"
   elif values[1] != 0: #heures
-    return f" {values[1]} heure{plural(values[1])}\n{values[2]} minute{plural(values[2])} {values[3]} seconde{plural(values[3])}"
+    return f"{values[1]} heure{plural(values[1])}\n{values[2]} minute{plural(values[2])} {values[3]} seconde{plural(values[3])}"
   elif values[2] != 0: #minutes
-    return f" {values[2]} minute{plural(values[2])} {values[3]} seconde{plural(values[3])}"
+    return f"\n{values[2]} minute{plural(values[2])} {values[3]} seconde{plural(values[3])}"
   else: #secondes
     return f"{values[3]} seconde{plural(values[3])}"
 
