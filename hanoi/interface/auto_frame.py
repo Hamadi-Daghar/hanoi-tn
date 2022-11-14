@@ -33,7 +33,7 @@ class AutoFrame(ctk.CTkFrame):
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Auto",
-      text_font = font.Font(size = 2, weight = "bold")
+      text_font = font.Font(size = 25, weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0, columnspan = 2,
