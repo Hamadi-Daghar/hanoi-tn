@@ -66,7 +66,7 @@ class BottomFrame(ctk.CTkFrame):
 
     #toggle état/mouvement
     self.display_toggle = ctk.CTkButton(
-      self, text = "Mouvements", 
+      self, text = "Mouvements",
       padx = 100,
       text_font = font.Font(size = 40),
       command = self.toggle_display
