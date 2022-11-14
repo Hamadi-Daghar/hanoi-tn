@@ -33,7 +33,7 @@ class AutoFrame(ctk.CTkFrame):
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Auto",
-      text_font = font.Font(size = 25, weight = "bold")
+      text_font = font.Font(size = 25, family = "Poppins", weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0, columnspan = 2,
@@ -43,8 +43,10 @@ class AutoFrame(ctk.CTkFrame):
     self.auto_button = ctk.CTkButton(
       self, 
       text = "Lancer", 
-      image = self.play_icon, 
-      text_font = font.Font(size = 25),
+      image = self.play_icon,
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      text_font = font.Font(size = 25, family = "Poppins"),
       command = self.toggle_auto
     )
     self.auto_button.grid(
@@ -57,7 +59,7 @@ class AutoFrame(ctk.CTkFrame):
     self.speed_readout = ctk.CTkLabel(
       self, 
       textvariable = self.speed_var,
-      text_font = font.Font(size = 35)
+      text_font = font.Font(size = 35, family = "Poppins")
     )
     self.speed_readout.grid(
       column = 0, row = 2
@@ -65,7 +67,8 @@ class AutoFrame(ctk.CTkFrame):
 
     self.speed_unit = ctk.CTkLabel(
       self, text = "mouvement/s",
-      text_font = font.Font(size = 25)
+      text_color = "#00A19A",
+      text_font = font.Font(size = 25, family = "Poppins")
     )
     self.speed_unit.grid(
       column = 1, row = 2
@@ -73,6 +76,10 @@ class AutoFrame(ctk.CTkFrame):
 
     self.speed_slider = ctk.CTkSlider(
       self,
+      button_color = "#24A1EB",
+      button_hover_color = "#117dbd",
+      progress_color = "#1A182D",
+      fg_color = "#95d1f5",
       width = 400, height = 40,
       from_ = 0, to = 3, number_of_steps = 3,
       command = self.update_speed
@@ -94,6 +101,14 @@ class AutoFrame(ctk.CTkFrame):
     if self.auto_mode is True:
       self.auto_run()
 
+    # Remake de la function pour que je puisse comprendre + Demander l'utilité de not
+    #self.auto_mode = not self.auto_mode
+    #if self.auto_mode:
+    #  self.auto_button.configure(text = "Arrêter")
+    #  self.auto_run()
+    #else:
+    #  self.auto_button.configure(text = "Lancer")
+
   def auto_run(self):
     speed:int = self.speed_var.get()
     if self.auto_mode:
@@ -103,4 +118,3 @@ class AutoFrame(ctk.CTkFrame):
         self.toggle_auto()
       else:
         self.after(self.steps[speed][0], self.auto_run)
-        #self.after(1000, self.auto_run)

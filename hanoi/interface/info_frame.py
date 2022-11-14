@@ -19,7 +19,7 @@ class InfoFrame(ctk.CTkFrame):
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Tours de Hanoï", 
-      text_font = font.Font(size = 40, weight = "bold", family = "Segoe UI")
+      text_font = font.Font(size = 40, family = "Poppins", weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0,
@@ -30,7 +30,7 @@ class InfoFrame(ctk.CTkFrame):
     self.progress = ctk.CTkLabel(
       self, text = "default %",
       text_color = "green",
-      text_font = font.Font(size = 50)
+      text_font = font.Font(size = 50, family = "Poppins")
     )
     self.progress.grid(
       column = 0, row = 1, 
@@ -41,7 +41,7 @@ class InfoFrame(ctk.CTkFrame):
     self.main_state = ctk.CTkLabel(
       self,
       text_color = "blue",
-      text_font = font.Font(size = 30)
+      text_font = font.Font(size = 30, family = "Poppins")
     )
     self.main_state.grid(
       column = 0, row = 2,
@@ -52,7 +52,7 @@ class InfoFrame(ctk.CTkFrame):
     self.secondary_state = ctk.CTkLabel(
       self, wraplength = 420,
       text_color = "red",
-      text_font = font.Font(size = 20)
+      text_font = font.Font(size = 20, family = "Poppins")
     )
     self.secondary_state.grid(
       column = 0, row = 3,
@@ -62,7 +62,7 @@ class InfoFrame(ctk.CTkFrame):
     #temps restant
     self.remaining_time = ctk.CTkLabel(
       self, text = "Temps restant :\ndefault",
-      text_font = font.Font(size = 20)
+      text_font = font.Font(size = 20, family = "Poppins")
     )
     self.remaining_time.grid(
       column = 0, row = 4,

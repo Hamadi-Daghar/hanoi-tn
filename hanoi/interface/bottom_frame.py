@@ -33,8 +33,11 @@ class BottomFrame(ctk.CTkFrame):
     self.rowconfigure(0, weight = 1)
     #bouton <<
     self.beginning_button = ctk.CTkButton(
-      self, 
-      text = "", image = self.rewind_icon,
+      self,
+      text = "",
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      image = self.rewind_icon,
       command = self.start_state
     )
     self.beginning_button.grid(
@@ -44,7 +47,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton <
     self.back_button = ctk.CTkButton(
       self,
-      text = "", image = self.previous_icon,
+      text = "", 
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      image = self.previous_icon,
       command = lambda: self.increment_state(-self.speed_var.get())
     )
     self.back_button.grid(
@@ -54,7 +60,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton >
     self.forward_button = ctk.CTkButton(
       self,
-      text = "", image = self.next_icon,
+      text = "",
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      image = self.next_icon,
       command = lambda: self.increment_state(self.speed_var.get())
     )
     self.forward_button.grid(
@@ -64,7 +73,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton >>
     self.end_button = ctk.CTkButton(
       self,
-      text = "", image = self.forward_icon,
+      text = "",
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      image = self.forward_icon,
       command = self.end_state
     )
     self.end_button.grid(
@@ -73,9 +85,12 @@ class BottomFrame(ctk.CTkFrame):
 
     #toggle état/mouvement
     self.display_toggle = ctk.CTkButton(
-      self, text = "Mouvements",
+      self, 
       padx = 100,
-      text_font = font.Font(size = 40),
+      text = "Mouvements",
+      fg_color = "#24A1EB",
+      hover_color = "#117dbd",
+      text_font = font.Font(size = 40, family = "Poppins"),
       command = self.toggle_display
     )
     self.display_toggle.grid(row = 0, column = 4, sticky = ctk.E)
