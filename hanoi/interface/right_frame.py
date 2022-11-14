@@ -1,9 +1,12 @@
-import tkinter as tk
-import customtkinter as ctk
-import tkinter.font as font
 import os
+import tkinter as tk
+import tkinter.font as font
 
-from hanoi.interface import info_frame, auto_frame, fil_rouge_frame
+import customtkinter as ctk
+
+import hanoi.interface.auto_frame as auto_frame
+import hanoi.interface.fil_rouge_frame as fil_rouge_frame
+import hanoi.interface.info_frame as info_frame
 
 class RightFrame(ctk.CTkFrame):
 
@@ -54,7 +57,7 @@ class RightFrame(ctk.CTkFrame):
       sticky = ctk.W, padx = 5
     )
 
-    self.info_frame = info_frame.InfoFrame(self, fg_color = "#EBEBEC")
+    self.info_frame = info_frame.InfoFrame(self, speed_var, fg_color = "#EBEBEC")
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
       sticky = ctk.N + ctk.EW
