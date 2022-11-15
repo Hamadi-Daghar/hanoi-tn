@@ -30,7 +30,7 @@ class App(ctk.CTk):
     self.rowconfigure(1, weight = 1)
 
     #canvas
-    self.canvas = hanoi_canvas.HanoiCanvas(self)
+    self.canvas = hanoi_canvas.HanoiCanvas(width = 1500, height = 950, bg = "#ffffff", cursor = "circle")
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame

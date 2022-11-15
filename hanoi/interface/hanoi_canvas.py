@@ -4,24 +4,24 @@ import customtkinter as ctk
 
 class HanoiCanvas(ctk.CTkCanvas):
 
-  def __init__(self, *args, **kwargs):
-    super().__init__(width = 1500, height = 950, bg = "#ffffff", *args, **kwargs)
+  def __init__(self, couleur_disque = "black", *args, **kwargs):
+    super().__init__(*args, **kwargs)
 
     #variables de configuration du rendu
     self.largeur_base = 400
     self.intervalle = 500
-    self.largeur_initiale_disque = 350
-    self.increment_disque = 10
+    self.largeur_initiale_disque = 400
+    self.increment_disque = 15
     self.hauteur_disque = 40
     self.hauteur_base = 40
     self.hauteur_tour = 900
     self.largeur_tour = 20
     self.marge_inf = 0
-    self.couleur_disque = "black"
+    self.couleur_disque = couleur_disque
     self.couleur_bg_texte = "white"
 
     self.draw_setup()
-    self.draw_state([[4,3,2,1],[1,2,3,4],[6,8,4,3]])
+    self.draw_state([[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],[],[]])
   
   def draw_setup(self)-> None:
 
