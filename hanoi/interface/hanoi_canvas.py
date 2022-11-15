@@ -118,6 +118,11 @@ class HanoiCanvas(ctk.CTkCanvas):
     pass
 
   def draw_state(self, towers: list[list[int]])-> None:
+    """Dessine l'état représenté par towers.
+
+    Args:
+        towers (list[list[int]]): La représentation de l'état à afficher.
+    """
     for tower in range(3):
       for i in range(len(towers[tower])):
         self.draw_disk(tower, i, towers[tower][i])
