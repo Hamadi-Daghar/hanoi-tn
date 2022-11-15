@@ -2,7 +2,6 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
-import hanoi.logic.state as state
 import hanoi.logic.towers as towers
 
 class HanoiCanvas(ctk.CTkCanvas):
@@ -21,6 +20,7 @@ class HanoiCanvas(ctk.CTkCanvas):
     self.largeur_tour = 20
     self.marge_inf = 0
     self.couleur_disque = couleur_disque
+    self.couleur_contour_disque = "white"
     self.couleur_bg_texte = "white"
 
     self.draw_setup()
@@ -93,6 +93,7 @@ class HanoiCanvas(ctk.CTkCanvas):
       (right_margin, bottom), (right_margin, bottom),
       
       fill = self.couleur_disque,
+      outline = self.couleur_contour_disque,
       smooth = True
     )
 
@@ -133,4 +134,4 @@ class HanoiCanvas(ctk.CTkCanvas):
   def update_display(self)-> None:
     self.delete("all")
     self.draw_setup()
-    self.draw_state(towers.compute_state(20, state.State.state))
+    self.draw_state(towers.current_state(20))

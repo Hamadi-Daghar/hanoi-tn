@@ -3,8 +3,10 @@ Manipule les tours de Hanoï sous la forme d'une liste de listes d'entiers [[],[
 Les entiers représentent des disques, avec 1 le plus petit.
 """
 
+import hanoi.logic.state as state
+
 def compute_state(nbr_disques: int, etat: int)-> list[list[int]]:
-  """Retourne l'état des tours #etat pour nbr_disques disques.
+  """Retourne l'état des tours à l'état etat pour nbr_disques disques.
 
   Args:
       nbr_disques (int): Le nombre de disques utilisés
@@ -123,6 +125,30 @@ def compute_state_and_move(nbr_disques: int, etat_depart: int)-> tuple[list[list
   move = compute_move_from_state(nbr_disques, etat_depart, towers)
 
   return (towers, move)
+
+# fonctions pour l'interface, vont récupérer state de hanoi.logic.state
+
+def current_state(nbr_disques: int)-> list[list[int]]:
+  """Retourne la représentation des tours à l'état actuel (depuis hanoi.logic.state) pour nbr_disques disques.
+
+  Args:
+      nbr_disques (int): Le nombre de disques du problème.
+
+  Returns:
+      list[list[int]]: La représentation des tours.
+  """
+  return compute_state(nbr_disques, state.State.state)
+
+def current_state_and_move(nbr_disques: int)-> tuple[list[list[int]], tuple[int, int]]:
+  """Retourne la représentation des tours à l'état actuel, et la représentation du mouvement suivant.
+
+  Args:
+      nbr_disques (int): Le nombre de disques du problème.
+
+  Returns:
+      tuple[list[list[int]], tuple[int, int]]: Sous la forme (tours, mouvement).
+  """
+  return compute_state_and_move(nbr_disques, state.State.state)
 
 # state = compute_state(20,0)
 # print("État 0 :", state)

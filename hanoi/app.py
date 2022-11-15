@@ -50,7 +50,7 @@ class App(ctk.CTk):
     
   
   def update_display(self):
-    print("speed_var : ", self.speed_var.get())
+    # print("speed_var : ", self.speed_var.get())
     self.right_frame.info_frame.update_display(state.State.state, self.move_display)
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (self.move_display) else "Mouvements")
