@@ -109,9 +109,30 @@ def tower_with_one(towers: list[list[int]])-> int:
   else:
     return -1
 
+def compute_state_and_move(nbr_disques: int, etat_depart: int)-> tuple[list[list[int]], tuple[int, int]]:
+  """À partir de l'indice d'un état de départ etat_depart et pour un problème à nbr_disques disques, retourne la modélisation des tours à cet état ainsi qu'un tuple représentant le mouvement à réaliser pour accéder à l'état suivant.
 
-# print(compute_state(20,0))
-# for i in range(1,20):
-#   move = compute_move(20, i)  
-#   print(f"{move[0]} -> {move[1]}")
-#   print(compute_state(20,i))
+  Args:
+      nbr_disques (int): Le nombre de disques du problème.
+      etat_depart (int): L'indice de l'état de départ.
+
+  Returns:
+      tuple[list[list[int]], tuple[int, int]]: De la forme (tours, mouvement).
+  """
+  towers = compute_state(nbr_disques, etat_depart)
+  move = compute_move_from_state(nbr_disques, etat_depart, towers)
+
+  return (towers, move)
+
+# state = compute_state(20,0)
+# print("État 0 :", state)
+# for i in range(0,19):
+#   move = compute_move(20, i, state)  
+#   print(f"[{i}] {move[0]} -> {move[1]} [{i+1}]")
+#   state = compute_state(20,i+1)
+#   print(f"État {i+1} :", state)
+
+# for i in range(0,20):
+#   result = compute_state_and_move(20, i)
+#   print(f"État {i+1} :", result[0])
+#   print(f"Mouvement {i+1} -> {i+2} :", result[1])
