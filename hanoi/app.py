@@ -55,6 +55,7 @@ class App(ctk.CTk):
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (self.move_display) else "Mouvements")
     )
+    self.canvas.update_display()
   
   def increment_count(self):
     self.count += 1

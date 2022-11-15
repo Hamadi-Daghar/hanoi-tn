@@ -2,13 +2,16 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
+import hanoi.logic.state as state
+import hanoi.logic.towers as towers
+
 class HanoiCanvas(ctk.CTkCanvas):
 
   def __init__(self, couleur_disque = "black", *args, **kwargs):
     super().__init__(*args, **kwargs)
 
     #variables de configuration du rendu
-    self.largeur_base = 400
+    self.largeur_base = 450
     self.intervalle = 500
     self.largeur_initiale_disque = 400
     self.increment_disque = 15
@@ -31,7 +34,7 @@ class HanoiCanvas(ctk.CTkCanvas):
       self.create_rectangle(
         ((750 + i * self.intervalle) - (self.largeur_tour / 2), 950 - self.marge_inf),
         ((750 + i * self.intervalle) + (self.largeur_tour / 2), 950 - self.marge_inf - self.hauteur_tour),
-        fill = "black"
+        fill = "brown"
       )
 
       #bases
@@ -126,3 +129,8 @@ class HanoiCanvas(ctk.CTkCanvas):
     for tower in range(3):
       for i in range(len(towers[tower])):
         self.draw_disk(tower, i, towers[tower][i])
+  
+  def update_display(self)-> None:
+    self.delete("all")
+    self.draw_setup()
+    self.draw_state(towers.compute_state(20, state.State.state))
