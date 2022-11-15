@@ -15,6 +15,12 @@ class App(ctk.CTk):
     self.resizable(False, False)
     #self.attributes("-fullscreen", True)
 
+    self.blueHoverColor = "#117DBD"
+    self.darkBlueColor = "#1A182D"
+    self.greyColor = "#EBEBEC"
+    self.lightBlue = "#95D1F5"
+    self.blueColor = "#24A1EB"
+
     self.fg_color = "#EBEBEC"
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
