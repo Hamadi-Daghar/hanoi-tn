@@ -5,7 +5,7 @@ import hanoi.interface.hanoi_canvas as  hanoi_canvas
 import hanoi.interface.right_frame as right_frame 
 import hanoi.logic.state as state
 
-class App(ctk.CTk):
+class App(ctk.CTk, ):
   
   def __init__(self):
     super().__init__()
@@ -15,13 +15,22 @@ class App(ctk.CTk):
     self.resizable(False, False)
     #self.attributes("-fullscreen", True)
 
-    self.blueHoverColor = "#117DBD"
-    self.darkBlueColor = "#1A182D"
-    self.greyColor = "#EBEBEC"
-    self.lightBlue = "#95D1F5"
-    self.blueColor = "#24A1EB"
+    self.colors = {
+      "blueHover": "#117DBD",
+      "lightBlue": "#95D1F5",
+      "darkBlue": "#1A182D",
+      "darkCyan": "#40E0D0",
+      "darkRed": "#B22222",
+      "yellow": "#F9BB12",
+      "white": "#FFFFFF",
+      "green": "#00A19A",
+      "grey": "#EBEBEC",
+      "cyan": "#00FFFF",
+      "blue": "#24A1EB",
+      "red": "#DC143C"
+    }
 
-    self.fg_color = "#EBEBEC"
+    self.fg_color = self.colors.get("grey")
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
     
@@ -40,14 +49,14 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self, self.speed_var, fg_color = "#EBEBEC")
+    self.bottom_frame = bottom_frame.BottomFrame(self, self.colors, self.speed_var, fg_color = self.colors.get("grey"))
     self.bottom_frame.grid(
       column = 0, row = 1, 
       padx = 88, pady = 10
     )
     
     #right frame
-    self.right_frame = right_frame.RightFrame(self, self.speed_var, fg_color = "#EBEBEC")
+    self.right_frame = right_frame.RightFrame(self, self.colors, self.speed_var, fg_color = self.colors.get("grey"))
     self.right_frame.grid(
       column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
     )

@@ -9,7 +9,7 @@ import hanoi.logic.state as state
 
 class BottomFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, colors, speed_var, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     self.parent = parent
@@ -35,8 +35,8 @@ class BottomFrame(ctk.CTkFrame):
     self.beginning_button = ctk.CTkButton(
       self,
       text = "",
-      fg_color = "#24A1EB",
-      hover_color = "#117dbd",
+      fg_color = colors.get("blue"),
+      hover_color = colors.get("blueHover"),
       image = self.rewind_icon,
       command = self.start_state
     )
@@ -48,8 +48,8 @@ class BottomFrame(ctk.CTkFrame):
     self.back_button = ctk.CTkButton(
       self,
       text = "", 
-      fg_color = "#24A1EB",
-      hover_color = "#117dbd",
+      fg_color = colors.get("blue"),
+      hover_color = colors.get("blueHover"),
       image = self.previous_icon,
       command = lambda: self.increment_state(-self.speed_var.get())
     )
@@ -61,8 +61,8 @@ class BottomFrame(ctk.CTkFrame):
     self.forward_button = ctk.CTkButton(
       self,
       text = "",
-      fg_color = "#24A1EB",
-      hover_color = "#117dbd",
+      fg_color = colors.get("blue"),
+      hover_color = colors.get("blueHover"),
       image = self.next_icon,
       command = lambda: self.increment_state(self.speed_var.get())
     )
@@ -74,8 +74,8 @@ class BottomFrame(ctk.CTkFrame):
     self.end_button = ctk.CTkButton(
       self,
       text = "",
-      fg_color = "#24A1EB",
-      hover_color = "#117dbd",
+      fg_color = colors.get("blue"),
+      hover_color = colors.get("blueHover"),
       image = self.forward_icon,
       command = self.end_state
     )
@@ -88,8 +88,8 @@ class BottomFrame(ctk.CTkFrame):
       self, 
       padx = 100,
       text = "Mouvements",
-      fg_color = "#24A1EB",
-      hover_color = "#117dbd",
+      fg_color = colors.get("blue"),
+      hover_color = colors.get("blueHover"),
       text_font = font.Font(size = 40, family = "Poppins"),
       command = self.toggle_display
     )
