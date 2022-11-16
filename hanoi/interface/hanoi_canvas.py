@@ -14,14 +14,19 @@ class HanoiCanvas(ctk.CTkCanvas):
     self.intervalle = 500
     self.largeur_initiale_disque = 400
     self.increment_disque = 15
-    self.hauteur_disque = 40
+    self.hauteur_disque = 38
     self.hauteur_base = 40
     self.hauteur_tour = 900
     self.largeur_tour = 20
     self.marge_inf = 0
+    self.couleur_bg_texte = "white"
+    
     self.couleur_disque = couleur_disque
     self.couleur_contour_disque = "white"
-    self.couleur_bg_texte = "white"
+    self.couleur_disque_origine = "blue"
+    self.couleur_contour_disque_origine = "black"
+    self.couleur_disque_destination = "red"
+    self.couleur_contour_disque_destination = "black"
 
     self.draw_setup()
     self.draw_state([[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],[],[]])
