@@ -63,8 +63,12 @@ def compute_move_from_state(nbr_disques: int, etat_depart: int, towers: list[lis
       towers (list[list[int]]): La modélisation des tours à l'état de départ.
 
   Returns:
-      tuple[int,int]: Un tuple (départ, arrivée) représentant les indices de la tour de départ et d'arrivée du mouvement.
+      tuple[int,int]: Un tuple (départ, arrivée) représentant les indices de la tour de départ et d'arrivée du mouvement. None si etat_depart est invalide.
   """
+
+  if (etat_depart < 0 or etat_depart >= 2**nbr_disques - 1):
+    return None
+
   #le mouvement implique le disque 1
   if etat_depart % 2 == 0:
     
