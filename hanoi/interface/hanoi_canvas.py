@@ -6,8 +6,10 @@ import hanoi.logic.towers as towers
 
 class HanoiCanvas(ctk.CTkCanvas):
 
-  def __init__(self, couleur_disque = "black", *args, **kwargs):
+  def __init__(self, parent, couleur_disque = "black", *args, **kwargs):
     super().__init__(*args, **kwargs)
+
+    self.parent = parent
 
     #variables de configuration du rendu
     self.largeur_base = 450
@@ -180,5 +182,7 @@ class HanoiCanvas(ctk.CTkCanvas):
   def update_display(self)-> None:
     self.delete("all")
     self.draw_setup()
-    self.draw_state(towers.current_state(20))
-    # self.draw_move(*towers.current_state_and_move(20))
+    if self.parent.move_display:
+      self.draw_move(*towers.current_state_and_move(20))
+    else:
+      self.draw_state(towers.current_state(20))
