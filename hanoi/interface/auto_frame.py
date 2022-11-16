@@ -8,7 +8,7 @@ import hanoi.logic.state as state
 
 class AutoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, colors, speed_var, *args, **kwargs):
+  def __init__(self, parent, speed_var, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -18,6 +18,7 @@ class AutoFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.speed_var = speed_var
+    self.colors = parent.colors
     self.auto_mode = False
     self.steps = { #speed : (delay, step)
       1 : (1000, 1),
@@ -44,8 +45,8 @@ class AutoFrame(ctk.CTkFrame):
       self, 
       text = "Lancer", 
       image = self.play_icon,
-      fg_color = colors.get("blue"),
-      hover_color = colors.get("blueHover"),
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
       text_font = font.Font(size = 25, family = "Poppins"),
       command = self.toggle_auto
     )
@@ -67,7 +68,7 @@ class AutoFrame(ctk.CTkFrame):
 
     self.speed_unit = ctk.CTkLabel(
       self, text = "mouvement/s",
-      text_color = colors.get("green"),
+      text_color = self.colors.get("green"),
       text_font = font.Font(size = 25, family = "Poppins")
     )
     self.speed_unit.grid(
@@ -76,10 +77,10 @@ class AutoFrame(ctk.CTkFrame):
 
     self.speed_slider = ctk.CTkSlider(
       self,
-      button_color = colors.get("blue"),
-      button_hover_color = colors.get("blueHover"),
-      progress_color = colors.get("darkBlue"),
-      fg_color = colors.get("lightBlue"),
+      button_color = self.colors.get("blue"),
+      button_hover_color = self.colors.get("blueHover"),
+      progress_color = self.colors.get("darkBlue"),
+      fg_color = self.colors.get("lightBlue"),
       width = 400, height = 40,
       from_ = 0, to = 3, number_of_steps = 3,
       command = self.update_speed

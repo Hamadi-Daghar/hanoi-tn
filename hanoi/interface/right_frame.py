@@ -12,7 +12,7 @@ import hanoi.interface.info_frame as info_frame
 
 class RightFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, colors, speed_var, *args, **kwargs):
+  def __init__(self, parent, speed_var, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     self.columnconfigure((0,1), weight = 1)
@@ -21,6 +21,7 @@ class RightFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.fullscreen = True
+    self.colors = parent.colors
 
     self.cross_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "cross.png"),
@@ -35,8 +36,8 @@ class RightFrame(ctk.CTkFrame):
     self.window_button = ctk.CTkButton(
       self, text = "",
       corner_radius = 15,
-      fg_color = colors.get("cyan"),
-      hover_color = colors.get("darkCyan"),
+      fg_color = self.colors.get("cyan"),
+      hover_color = self.colors.get("darkCyan"),
       image = self.smaller_icon,
       command = self.toggle_window
     )
@@ -48,8 +49,8 @@ class RightFrame(ctk.CTkFrame):
     self.quit_button = ctk.CTkButton(
       self, text = "",
       corner_radius = 15,
-      fg_color = colors.get("red"),
-      hover_color = colors.get("darkRed"),
+      fg_color = self.colors.get("red"),
+      hover_color = self.colors.get("darkRed"),
       image = self.cross_icon,
       command = exit
     )
@@ -58,19 +59,19 @@ class RightFrame(ctk.CTkFrame):
       sticky = ctk.W, padx = 5
     )
 
-    self.info_frame = info_frame.InfoFrame(self, colors, speed_var, fg_color = colors.get("grey"))
+    self.info_frame = info_frame.InfoFrame(self, speed_var, fg_color = self.colors.get("grey"))
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
       sticky = ctk.N + ctk.EW
     )
 
-    self.auto_frame = auto_frame.AutoFrame(self, colors, speed_var, fg_color = colors.get("grey"))
+    self.auto_frame = auto_frame.AutoFrame(self, speed_var, fg_color = self.colors.get("grey"))
     self.auto_frame.grid(
       column = 0, row = 2, columnspan = 2,
       sticky = ctk.EW
     )
 
-    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, colors, fg_color = colors.get("grey"))
+    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, fg_color = self.colors.get("grey"))
     self.fil_rouge_frame.grid(
       column = 0, row = 3, columnspan = 2,
       sticky = ctk.EW

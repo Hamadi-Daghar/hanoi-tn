@@ -6,7 +6,7 @@ import hanoi.logic.temporality as temporality
 
 class InfoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, colors, speed_var, *args, **kwargs):
+  def __init__(self, parent, speed_var, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -15,6 +15,7 @@ class InfoFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.speed_var = speed_var
+    self.colors = parent.colors
 
     #titre
     self.title = ctk.CTkLabel(

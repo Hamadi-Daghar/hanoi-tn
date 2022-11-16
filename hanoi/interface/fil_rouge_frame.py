@@ -5,7 +5,7 @@ import customtkinter as ctk
 
 class FilRougeFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, colors, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid

@@ -49,14 +49,14 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self, self.colors, self.speed_var, fg_color = self.colors.get("grey"))
+    self.bottom_frame = bottom_frame.BottomFrame(self, self.speed_var, fg_color = self.colors.get("grey"))
     self.bottom_frame.grid(
       column = 0, row = 1, 
       padx = 88, pady = 10
     )
     
     #right frame
-    self.right_frame = right_frame.RightFrame(self, self.colors, self.speed_var, fg_color = self.colors.get("grey"))
+    self.right_frame = right_frame.RightFrame(self, self.speed_var, fg_color = self.colors.get("grey"))
     self.right_frame.grid(
       column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
     )
