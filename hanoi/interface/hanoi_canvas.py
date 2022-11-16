@@ -18,7 +18,7 @@ class HanoiCanvas(ctk.CTkCanvas):
     self.increment_disque = 15
     self.hauteur_disque = 38
     self.hauteur_base = 40
-    self.hauteur_tour = 900
+    self.hauteur_tour = 825
     self.largeur_tour = 20
     self.marge_inf = 0
     self.couleur_bg_texte = "white"
@@ -29,9 +29,6 @@ class HanoiCanvas(ctk.CTkCanvas):
     self.couleur_contour_disque_origine = "black"
     self.couleur_disque_destination = "red"
     self.couleur_contour_disque_destination = "black"
-
-    self.draw_setup()
-    self.draw_state([[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],[],[]])
   
   def draw_setup(self)-> None:
 
@@ -105,7 +102,7 @@ class HanoiCanvas(ctk.CTkCanvas):
       
       fill = couleur,
       outline = couleur_contour,
-      smooth = True
+      smooth = True,
     )
 
     self.create_text(
@@ -177,6 +174,36 @@ class HanoiCanvas(ctk.CTkCanvas):
       
       # destination
       self.draw_disk(move[1], len(towers[move[1]]), towers[move[0]][len(towers[move[0]]) - 1], destination = True)
+
+      self.draw_arrow(*move)
+  
+  def draw_arrow(self, origine: int, destination: int)-> None:
+    """Dessine une flèche allant de la tour d'indice origine vers la tour d'indice destination.
+
+    Args:
+        origine (int): L'indice de la tour d'origine de la flèche.
+        destination (int): L'indice de la tour de destination de la flèche.
+    """
+    #hauteur de la flèche
+    hauteur = 100
+    #decalage entre 2 tours
+    intervalle = self.intervalle
+    #coordonnée y du haut de la plus grande tour possible
+    top = 950 - self.marge_inf - 1.01 * self.hauteur_tour
+
+    #départ/arrivée : coordonnée x des tours correspondantes
+    coords = [750 + i * intervalle for i in [-1, 0, 1]]
+    (depart, arrivee) = (coords[origine], coords[destination])
+
+    self.create_line(
+      (depart, top),
+      (depart, top - hauteur),
+      (arrivee, top - hauteur),
+      (arrivee, top),
+      width = 10,
+      arrow = ctk.LAST, arrowshape = (24, 30, 9),
+      smooth = True
+    )
   
 
   def update_display(self)-> None:
