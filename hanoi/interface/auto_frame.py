@@ -19,6 +19,7 @@ class AutoFrame(ctk.CTkFrame):
     self.parent = parent
     self.speed_var = speed_var
     self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
     self.auto_mode = False
     self.steps = { #speed : (delay, step)
       1 : (1000, 1),
@@ -34,7 +35,7 @@ class AutoFrame(ctk.CTkFrame):
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Auto",
-      text_font = font.Font(size = 25, family = "Poppins", weight = "bold")
+      text_font = font.Font(size = 25, family = self.fontPolicy, weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0, columnspan = 2,
@@ -47,7 +48,7 @@ class AutoFrame(ctk.CTkFrame):
       image = self.play_icon,
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blueHover"),
-      text_font = font.Font(size = 25, family = "Poppins"),
+      text_font = font.Font(size = 25, family = self.fontPolicy),
       command = self.toggle_auto
     )
     self.auto_button.grid(
@@ -60,7 +61,7 @@ class AutoFrame(ctk.CTkFrame):
     self.speed_readout = ctk.CTkLabel(
       self, 
       textvariable = self.speed_var,
-      text_font = font.Font(size = 35, family = "Poppins")
+      text_font = font.Font(size = 35, family = self.fontPolicy)
     )
     self.speed_readout.grid(
       column = 0, row = 2
@@ -69,7 +70,7 @@ class AutoFrame(ctk.CTkFrame):
     self.speed_unit = ctk.CTkLabel(
       self, text = "mouvement/s",
       text_color = self.colors.get("green"),
-      text_font = font.Font(size = 25, family = "Poppins")
+      text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_unit.grid(
       column = 1, row = 2

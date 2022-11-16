@@ -15,6 +15,7 @@ class BottomFrame(ctk.CTkFrame):
     self.parent = parent
     self.speed_var = speed_var
     self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
 
     self.rewind_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "rewind.png")
@@ -91,7 +92,7 @@ class BottomFrame(ctk.CTkFrame):
       text = "Mouvements",
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blueHover"),
-      text_font = font.Font(size = 40, family = "Poppins"),
+      text_font = font.Font(size = 40, family = self.fontPolicy),
       command = self.toggle_display
     )
     self.display_toggle.grid(row = 0, column = 4, sticky = ctk.E)

@@ -22,6 +22,7 @@ class RightFrame(ctk.CTkFrame):
     self.parent = parent
     self.fullscreen = True
     self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
 
     self.cross_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "cross.png"),

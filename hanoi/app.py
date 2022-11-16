@@ -30,6 +30,8 @@ class App(ctk.CTk):
       "red": "#DC143C"
     }
 
+    self.fontPolicy = "Poppins"
+
     self.fg_color = self.colors.get("grey")
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
