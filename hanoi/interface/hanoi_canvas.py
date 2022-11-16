@@ -112,7 +112,7 @@ class HanoiCanvas(ctk.CTkCanvas):
       fill = self.couleur_bg_texte,
       font = font.Font(size = int(hauteur/2))
     )
-  
+
   def draw_disk(self, tower: int, height_index: int, disk_number: int, origine: bool = False, destination: bool = False)-> None:
     """Desine le disque disk_number posé sur la tour tower à la hauteur d'indice height_index.
 
@@ -153,7 +153,32 @@ class HanoiCanvas(ctk.CTkCanvas):
       for i in range(len(towers[tower])):
         self.draw_disk(tower, i, towers[tower][i])
   
+  def draw_move(self, towers: list[list[int]], move: tuple[int, int])-> None:
+    """Dessine le mouvement d'une pièce décrit par move à partir de l'état initial décrit par towers.
+    Si le state actuel est le dernier (2**20 - 1), afficher le dernier état.
+
+    Args:
+        towers (list[list[int]]): La représentation de l'état initial.
+        move (tuple[int, int]): La représentation du mouvement à afficher, sous la forme (origine, destination) avec les indices des tours (0,1,2).
+    """
+    if move == None:
+      
+      self.draw_state(towers)
+    
+    else:
+
+      for tower in range(3):
+        for i in range(len(towers[tower])):
+          self.draw_disk(tower, i, towers[tower][i], 
+            origine = (tower == move[0]) and (i == len(towers[tower]) - 1) #origine
+          )
+      
+      # destination
+      self.draw_disk(move[1], len(towers[move[1]]), towers[move[0]][len(towers[move[0]]) - 1], destination = True)
+  
+
   def update_display(self)-> None:
     self.delete("all")
     self.draw_setup()
     self.draw_state(towers.current_state(20))
+    # self.draw_move(*towers.current_state_and_move(20))
