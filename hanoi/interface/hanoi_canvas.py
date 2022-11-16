@@ -113,20 +113,33 @@ class HanoiCanvas(ctk.CTkCanvas):
       font = font.Font(size = int(hauteur/2))
     )
   
-  def draw_disk(self, tower: int, height_index: int, disk_number: int)-> None:
+  def draw_disk(self, tower: int, height_index: int, disk_number: int, origine: bool = False, destination: bool = False)-> None:
     """Desine le disque disk_number posé sur la tour tower à la hauteur d'indice height_index.
 
     Args:
         tower (int): 0-2, indice de la tour sur laquelle poser le disque.
         height_index (int): indice de hauteur où poser le disque, où 0 correspond au disque posé sur la base de la tour, 1 le disque posé sur un autre disque, etc.
         disk_number (int): Indice du disque, détermine sa taille et son étiquette.
+        origine (bool, optional): Indique si le disque est le disque d'origine d'un mouvement. Defaults to False.
+        destination (bool, optional): Indique si le disque est le disque de destination d'un mouvement. Defaults to False.
     """
+    if origine:
+      couleur = self.couleur_disque_origine
+      couleur_contour = self.couleur_contour_disque_origine
+    elif destination:
+      couleur = self.couleur_disque_destination
+      couleur_contour = self.couleur_contour_disque_destination
+    else:
+      couleur = self.couleur_disque
+      couleur_contour = self.couleur_contour_disque
+
     self.draw_disk_shape(
       (750 + self.intervalle * (tower - 1), 950 - self.marge_inf - self.hauteur_base - height_index * self.hauteur_disque),
       self.largeur_initiale_disque - self.increment_disque * (20 - disk_number),
       self.hauteur_disque,
       self.hauteur_disque / 2,
-      str(disk_number)
+      str(disk_number),
+      couleur, couleur_contour
     )
     pass
 
