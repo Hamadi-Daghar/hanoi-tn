@@ -49,7 +49,7 @@ class HanoiCanvas(ctk.CTkCanvas):
         fill = "brown"
       )
     
-  def draw_disk_shape(self, origin: tuple[int,int], largeur: int, hauteur: int, marge: int, etiquette: str)-> None:
+  def draw_disk_shape(self, origin: tuple[int,int], largeur: int, hauteur: int, marge: int, etiquette: str, couleur: str, couleur_contour: str)-> None:
     """Dessine un disque "posé" sur le point origin (x,y), de largeur et de hauteur spécifiées.
     Coordonnées :        Axe y :
     /-------------\  <--  top
@@ -69,6 +69,10 @@ class HanoiCanvas(ctk.CTkCanvas):
         origin (tuple): L'origine sur lequel est posée le disque.
         largeur (int): Sa largeur.
         hauteur (int): Sa hauteur.
+        marge (int): Le rayon, en px, de l'arrondi du disque.
+        etiquette (str): La chaîne de caractère à afficher au centre du disque.
+        couleur (str): La couleur du disque.
+        couleur_contour (str): La couleur du contour du disque.
     """
 
     x = origin[0]
@@ -97,8 +101,8 @@ class HanoiCanvas(ctk.CTkCanvas):
       (right, bottom), #coin SE
       (right_margin, bottom), (right_margin, bottom),
       
-      fill = self.couleur_disque,
-      outline = self.couleur_contour_disque,
+      fill = couleur,
+      outline = couleur_contour,
       smooth = True
     )
 
