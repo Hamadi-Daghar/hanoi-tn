@@ -5,7 +5,7 @@ import hanoi.interface.hanoi_canvas as  hanoi_canvas
 import hanoi.interface.right_frame as right_frame 
 import hanoi.logic.state as state
 
-class App(ctk.CTk, ):
+class App(ctk.CTk):
   
   def __init__(self):
     super().__init__()
