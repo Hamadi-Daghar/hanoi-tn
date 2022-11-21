@@ -11,7 +11,7 @@ class InfoFrame(ctk.CTkFrame):
 
     #grid
     self.columnconfigure(0, weight = 1)
-    self.rowconfigure((0,1,2,3,4), weight = 1)
+    self.rowconfigure((0,1,2,3,4,5,6), weight = 1)
 
     self.parent = parent
     self.speed_var = speed_var
@@ -20,61 +20,84 @@ class InfoFrame(ctk.CTkFrame):
 
     #titre
     self.title = ctk.CTkLabel(
-      self, text = "Tours de Hanoï", 
-      text_font = font.Font(size = 40, family = self.fontPolicy, weight = "bold")
+      self, text = "Tours de Hanoï",
+      text_color = self.colors.get('darkBlue'),
+      text_font = font.Font(size = 35, family = self.fontPolicy, weight = "bold")
     )
     self.title.grid(
-      column = 0, row = 0,
-      pady = (0,10)
+      column = 0, row = 0, 
+    )
+
+    self.separator1 = ctk.CTkLabel(
+      self, 
+      text = "--------------------------------------------",
+      text_font = font.Font(size = 15, family = self.fontPolicy)
+    )
+    self.separator1.grid(
+      column = 0, 
+      row = 1,
+      pady = 15
     )
 
     #progression
     self.progress = ctk.CTkLabel(
-      self, text = "default %",
-      text_color = "green",
-      text_font = font.Font(size = 50, family = self.fontPolicy)
+      self, text = "Progression: default %",
+      text_color = self.colors.get('darkBlue'),
+      text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.progress.grid(
-      column = 0, row = 1, 
-      pady = 30
+      column = 0, row = 2,
+      sticky = "W"
     )
 
     #état/mouvement principal
     self.main_state = ctk.CTkLabel(
       self,
-      text_color = "blue",
-      text_font = font.Font(size = 30, family = self.fontPolicy)
+      text_color = self.colors.get('darkBlue'),
+      text_font = font.Font(size = 18, family = self.fontPolicy), 
     )
     self.main_state.grid(
-      column = 0, row = 2,
-      pady = 10
+      column = 0, row = 3,
+      sticky = "EW"
     )
 
     #état mouvement secondaire
     self.secondary_state = ctk.CTkLabel(
-      self, wraplength = 420,
-      text_color = "red",
-      text_font = font.Font(size = 20, family = self.fontPolicy)
+      self,
+      text_color = self.colors.get('darkBlue'),
+      text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.secondary_state.grid(
-      column = 0, row = 3,
-      pady = 10
+      column = 0, row = 4,
+      sticky = "W"
     )
 
     #temps restant
     self.remaining_time = ctk.CTkLabel(
-      self, text = "Temps restant :\ndefault",
-      text_font = font.Font(size = 20, family = self.fontPolicy)
+      self, text = "Temps restant: default",
+      text_color = self.colors.get('darkBlue'),
+      text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.remaining_time.grid(
-      column = 0, row = 4,
-      pady = 10
+      column = 0, row = 5,
+      sticky = "W"
+    )
+
+    self.separator2 = ctk.CTkLabel(
+      self, 
+      text = "--------------------------------------------",
+      text_font = font.Font(size = 15, family = self.fontPolicy)
+    )
+    self.separator2.grid(
+      column = 0, 
+      row = 6,
+      pady = 15
     )
   
   def update_display(self, state, move_display):
     
     self.progress.configure(
-      text = f"{ format( round(((state)/(2**20 - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
+      text = f"Progression : { format( round(((state)/(2**20 - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
       # text = format( round(((state+1)/(2**20))*100, 6), 'f').rstrip('0').rstrip('.') + " %"
     )
 
@@ -84,10 +107,10 @@ class InfoFrame(ctk.CTkFrame):
     ))
 
     self.secondary_state.configure(text = (
-      f"État {state + 1} -> État {state + 2}" if move_display else
-      f"Obtenu après \n{state} mouvements"
+      f"(État {state + 1} -> État {state + 2})" if move_display else
+      f"(Obtenu après {state} mouvements)"
     ))
 
     self.remaining_time.configure(text = (
-      "Temps restant :\n" + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
+      "Temps restant: " + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
     ))
