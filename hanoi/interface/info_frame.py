@@ -36,18 +36,18 @@ class InfoFrame(ctk.CTkFrame):
     self.separator1.grid(
       column = 0, 
       row = 1,
-      pady = 15
+      pady = 10
     )
 
     #progression
     self.progress = ctk.CTkLabel(
-      self, text = "Progression: default %",
+      self,
       text_color = self.colors.get('darkBlue'),
       text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.progress.grid(
       column = 0, row = 2,
-      sticky = "W"
+      pady = 20
     )
 
     #état/mouvement principal
@@ -57,8 +57,7 @@ class InfoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 18, family = self.fontPolicy), 
     )
     self.main_state.grid(
-      column = 0, row = 3,
-      sticky = "EW"
+      column = 0, row = 3
     )
 
     #état mouvement secondaire
@@ -68,19 +67,18 @@ class InfoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.secondary_state.grid(
-      column = 0, row = 4,
-      sticky = "W"
+      column = 0, row = 4
     )
 
     #temps restant
     self.remaining_time = ctk.CTkLabel(
-      self, text = "Temps restant: default",
+      self,
       text_color = self.colors.get('darkBlue'),
       text_font = font.Font(size = 18, family = self.fontPolicy)
     )
     self.remaining_time.grid(
       column = 0, row = 5,
-      sticky = "W"
+      pady = 20
     )
 
     self.separator2 = ctk.CTkLabel(
@@ -91,7 +89,7 @@ class InfoFrame(ctk.CTkFrame):
     self.separator2.grid(
       column = 0, 
       row = 6,
-      pady = 15
+      pady = 10
     )
   
   def update_display(self, state, move_display):
@@ -102,15 +100,15 @@ class InfoFrame(ctk.CTkFrame):
     )
 
     self.main_state.configure(text = (
-      f"Mouvement #{state + 1}" if move_display else 
-      f"État #{state + 1}"
+      f"Mouvement {state + 1}" if move_display else 
+      f"État {state + 1}"
     ))
 
     self.secondary_state.configure(text = (
-      f"(État {state + 1} -> État {state + 2})" if move_display else
+      f"(De l'État {state + 1} à l'État {state + 2})" if move_display else
       f"(Obtenu après {state} mouvements)"
     ))
 
     self.remaining_time.configure(text = (
-      "Temps restant: " + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
+      "Temps restant : " + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
     ))
