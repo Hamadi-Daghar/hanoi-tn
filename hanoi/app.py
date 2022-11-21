@@ -30,7 +30,7 @@ class App(ctk.CTk):
     self.rowconfigure(1, weight = 1)
 
     #canvas
-    self.canvas = hanoi_canvas.HanoiCanvas(self)
+    self.canvas = hanoi_canvas.HanoiCanvas(self, width = 1500, height = 950, bg = "#ffffff", cursor = "circle")
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
@@ -50,11 +50,12 @@ class App(ctk.CTk):
     
   
   def update_display(self):
-    print("speed_var : ", self.speed_var.get())
+    # print("speed_var : ", self.speed_var.get())
     self.right_frame.info_frame.update_display(state.State.state, self.move_display)
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (self.move_display) else "Mouvements")
     )
+    self.canvas.update_display()
   
   def increment_count(self):
     self.count += 1
