@@ -60,7 +60,7 @@ class App(ctk.CTk):
     #right frame
     self.right_frame = right_frame.RightFrame(self, self.speed_var, fg_color = self.colors.get("grey"))
     self.right_frame.grid(
-      column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
+      column = 1, row = 0, sticky = ctk.N + ctk.EW
     )
     
     self.update_display()

@@ -16,8 +16,7 @@ class RightFrame(ctk.CTkFrame):
     super().__init__(parent, *args, **kwargs)
 
     self.columnconfigure((0,1), weight = 1)
-    self.rowconfigure(0, weight = 1)
-    self.rowconfigure((1,2,3), weight = 5)
+    self.rowconfigure((0,1,2,3), weight = 1)
 
     self.parent = parent
     self.fullscreen = True
@@ -44,7 +43,8 @@ class RightFrame(ctk.CTkFrame):
     )
     self.window_button.grid(
       column = 0, row = 0, 
-      sticky = ctk.E, padx = 5 
+      sticky = ctk.E, 
+      padx = 15, pady = 10
     )
 
     self.quit_button = ctk.CTkButton(
@@ -57,13 +57,14 @@ class RightFrame(ctk.CTkFrame):
     )
     self.quit_button.grid(
       column = 1, row = 0,
-      sticky = ctk.W, padx = 5
+      sticky = ctk.W, 
+      padx = 15, pady = 10
     )
 
     self.info_frame = info_frame.InfoFrame(self, speed_var, fg_color = self.colors.get("grey"))
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
-      sticky = ctk.N + ctk.EW
+      sticky = ctk.EW
     )
 
     self.auto_frame = auto_frame.AutoFrame(self, speed_var, fg_color = self.colors.get("grey"))

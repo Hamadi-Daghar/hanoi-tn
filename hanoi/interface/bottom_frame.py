@@ -93,9 +93,9 @@ class BottomFrame(ctk.CTkFrame):
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blueHover"),
       text_font = font.Font(size = 40, family = self.fontPolicy),
-      command = self.toggle_display
+      command = self.toggle_display,
     )
-    self.display_toggle.grid(row = 0, column = 4, sticky = ctk.E)
+    self.display_toggle.grid(row = 0, column = 4, sticky = ctk.EW)
 
   
   def increment_state(self, increment:int):

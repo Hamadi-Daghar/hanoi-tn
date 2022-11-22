@@ -14,7 +14,7 @@ class AutoFrame(ctk.CTkFrame):
     #grid
     self.columnconfigure(0, weight = 1)
     self.columnconfigure(1, weight = 3)
-    self.rowconfigure((0,1,2,3,4), weight = 1)
+    self.rowconfigure((0,1,2,3,4,5), weight = 1)
 
     self.parent = parent
     self.speed_var = speed_var
@@ -34,12 +34,12 @@ class AutoFrame(ctk.CTkFrame):
 
     #titre
     self.title = ctk.CTkLabel(
-      self, text = "Auto",
-      text_font = font.Font(size = 25, family = self.fontPolicy, weight = "bold")
+      self, text = "Mode automatique",
+      text_color = self.colors.get("darkBlue"),
+      text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.title.grid(
-      column = 0, row = 0, columnspan = 2,
-      pady = 10, sticky = ctk.W
+      column = 0, row = 0, columnspan = 2
     )
 
     self.auto_button = ctk.CTkButton(
@@ -52,28 +52,28 @@ class AutoFrame(ctk.CTkFrame):
       command = self.toggle_auto
     )
     self.auto_button.grid(
-      column = 0, row = 1, columnspan = 2,
-      ipadx = 15, 
-      pady = 20
+      column = 0, row = 1, columnspan = 2, pady = 10
     )
 
+    self.separator1 = ctk.CTkLabel(self, text = "").grid(column = 0, row = 2, pady = 10)
 
     self.speed_readout = ctk.CTkLabel(
-      self, 
+      self,
       textvariable = self.speed_var,
-      text_font = font.Font(size = 35, family = self.fontPolicy)
+      text_color = self.colors.get("darkBlue"),
+      text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_readout.grid(
-      column = 0, row = 2
+      column = 0, row = 3
     )
 
     self.speed_unit = ctk.CTkLabel(
       self, text = "mouvement/s",
-      text_color = self.colors.get("green"),
+      text_color = self.colors.get("darkBlue"),
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_unit.grid(
-      column = 1, row = 2
+      column = 1, row = 3
     )
 
     self.speed_slider = ctk.CTkSlider(
@@ -82,16 +82,20 @@ class AutoFrame(ctk.CTkFrame):
       button_hover_color = self.colors.get("blueHover"),
       progress_color = self.colors.get("darkBlue"),
       fg_color = self.colors.get("lightBlue"),
-      width = 400, height = 40,
+      width = 400, height = 35,
       from_ = 0, to = 3, number_of_steps = 3,
       command = self.update_speed
     )
     self.speed_slider.set(0)
     self.speed_slider.grid(
-      column = 0, row = 3, columnspan = 2
+      column = 0, row = 4, columnspan = 2
     )
-  
 
+    self.separator2 = ctk.CTkLabel(
+      self, text = "--------------------------------------------",
+      text_font = font.Font(size = 15, family = self.fontPolicy)
+    ).grid(column = 0, row = 5, pady = 15, columnspan = 2)
+  
   def update_speed(self, value):
     self.speed_var.set(int(10**value))
     self.parent.parent.update_display()
@@ -102,14 +106,6 @@ class AutoFrame(ctk.CTkFrame):
     #TODO : toggle icon
     if self.auto_mode is True:
       self.auto_run()
-
-    # Remake de la function pour que je puisse comprendre + Demander l'utilité de not
-    #self.auto_mode = not self.auto_mode
-    #if self.auto_mode:
-    #  self.auto_button.configure(text = "Arrêter")
-    #  self.auto_run()
-    #else:
-    #  self.auto_button.configure(text = "Lancer")
 
   def auto_run(self):
     speed:int = self.speed_var.get()
