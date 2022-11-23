@@ -4,6 +4,8 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
+import hanoi.app as app
+
 import hanoi.interface.auto_frame as auto_frame
 import hanoi.interface.fil_rouge_frame as fil_rouge_frame
 import hanoi.interface.info_frame as info_frame
@@ -14,11 +16,12 @@ class RightFrame(ctk.CTkFrame):
     super().__init__(parent, *args, **kwargs)
 
     self.columnconfigure((0,1), weight = 1)
-    self.rowconfigure(0, weight = 1)
-    self.rowconfigure((1,2,3), weight = 5)
+    self.rowconfigure((0,1,2,3), weight = 1)
 
     self.parent = parent
     self.fullscreen = True
+    self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
 
     self.cross_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "cross.png"),
@@ -30,46 +33,47 @@ class RightFrame(ctk.CTkFrame):
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "smaller.png"),
     ).subsample(3)
 
-
     self.window_button = ctk.CTkButton(
       self, text = "",
       corner_radius = 15,
-      fg_color = "#00FFFF",
-      hover_color = "#40E0D0",
+      fg_color = self.colors.get("cyan"),
+      hover_color = self.colors.get("darkCyan"),
       image = self.smaller_icon,
       command = self.toggle_window
     )
     self.window_button.grid(
       column = 0, row = 0, 
-      sticky = ctk.E, padx = 5 
+      sticky = ctk.E, 
+      padx = 15, pady = 10
     )
 
     self.quit_button = ctk.CTkButton(
       self, text = "",
       corner_radius = 15,
-      fg_color = "#DC143C",
-      hover_color = "#B22222",
+      fg_color = self.colors.get("red"),
+      hover_color = self.colors.get("darkRed"),
       image = self.cross_icon,
       command = exit
     )
     self.quit_button.grid(
       column = 1, row = 0,
-      sticky = ctk.W, padx = 5
+      sticky = ctk.W, 
+      padx = 15, pady = 10
     )
 
-    self.info_frame = info_frame.InfoFrame(self, fg_color = "#EBEBEC")
+    self.info_frame = info_frame.InfoFrame(self, fg_color = self.colors.get("grey"))
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
-      sticky = ctk.N + ctk.EW
+      sticky = ctk.EW
     )
 
-    self.auto_frame = auto_frame.AutoFrame(self, fg_color = "#EBEBEC")
+    self.auto_frame = auto_frame.AutoFrame(self, fg_color = self.colors.get("grey"))
     self.auto_frame.grid(
       column = 0, row = 2, columnspan = 2,
       sticky = ctk.EW
     )
 
-    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, fg_color = "#EBEBEC")
+    self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, fg_color = self.colors.get("grey"))
     self.fil_rouge_frame.grid(
       column = 0, row = 3, columnspan = 2,
       sticky = ctk.EW

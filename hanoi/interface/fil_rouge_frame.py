@@ -13,11 +13,13 @@ class FilRougeFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3,4), weight = 1)
 
     self.parent = parent
+    self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
 
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Fil Rouge", 
-      text_font = font.Font(size = 30, weight = "bold")
+      text_font = font.Font(size = 30, family = self.fontPolicy, weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0,
@@ -26,7 +28,7 @@ class FilRougeFrame(ctk.CTkFrame):
 
     self.placeholder = ctk.CTkLabel(
       self, text = "À FAIRE",
-      text_font = font.Font(size = 25)
+      text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.placeholder.grid(
       column = 0, row = 1

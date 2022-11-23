@@ -15,7 +15,24 @@ class App(ctk.CTk):
     self.resizable(False, False)
     self.attributes("-fullscreen", True)
 
-    self.fg_color = "#EBEBEC"
+    self.colors = {
+      "blueHover": "#117DBD",
+      "lightBlue": "#95D1F5",
+      "darkBlue": "#1A182D",
+      "darkCyan": "#40E0D0",
+      "darkRed": "#B22222",
+      "yellow": "#F9BB12",
+      "white": "#FFFFFF",
+      "green": "#00A19A",
+      "grey": "#EBEBEC",
+      "cyan": "#00FFFF",
+      "blue": "#24A1EB",
+      "red": "#DC143C"
+    }
+
+    self.fontPolicy = "Poppins"
+
+    self.fg_color = self.colors.get("grey")
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
 
@@ -30,16 +47,16 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self, fg_color = "#EBEBEC")
+    self.bottom_frame = bottom_frame.BottomFrame(self, fg_color = self.colors.get("grey"))
     self.bottom_frame.grid(
       column = 0, row = 1, 
       padx = 88, pady = 10
     )
     
     #right frame
-    self.right_frame = right_frame.RightFrame(self, fg_color = "#EBEBEC")
+    self.right_frame = right_frame.RightFrame(self, fg_color = self.colors.get("grey"))
     self.right_frame.grid(
-      column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
+      column = 1, row = 0, sticky = ctk.N + ctk.EW
     )
     
     self.update_display()

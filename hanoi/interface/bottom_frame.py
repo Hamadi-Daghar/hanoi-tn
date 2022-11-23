@@ -13,7 +13,8 @@ class BottomFrame(ctk.CTkFrame):
     super().__init__(parent, *args, **kwargs)
 
     self.parent = parent
-    # self.speed_var = speed_var
+    self.colors = parent.colors
+    self.fontPolicy = parent.fontPolicy
 
     self.rewind_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "rewind.png")
@@ -33,8 +34,11 @@ class BottomFrame(ctk.CTkFrame):
     self.rowconfigure(0, weight = 1)
     #bouton <<
     self.beginning_button = ctk.CTkButton(
-      self, 
-      text = "", image = self.rewind_icon,
+      self,
+      text = "",
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
+      image = self.rewind_icon,
       command = self.start_state
     )
     self.beginning_button.grid(
@@ -44,7 +48,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton <
     self.back_button = ctk.CTkButton(
       self,
-      text = "", image = self.previous_icon,
+      text = "", 
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
+      image = self.previous_icon,
       command = lambda: self.increment_state(-State.speed)
     )
     self.back_button.grid(
@@ -54,7 +61,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton >
     self.forward_button = ctk.CTkButton(
       self,
-      text = "", image = self.next_icon,
+      text = "",
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
+      image = self.next_icon,
       command = lambda: self.increment_state(State.speed)
     )
     self.forward_button.grid(
@@ -64,7 +74,10 @@ class BottomFrame(ctk.CTkFrame):
     #bouton >>
     self.end_button = ctk.CTkButton(
       self,
-      text = "", image = self.forward_icon,
+      text = "",
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
+      image = self.forward_icon,
       command = self.end_state
     )
     self.end_button.grid(
@@ -73,12 +86,15 @@ class BottomFrame(ctk.CTkFrame):
 
     #toggle état/mouvement
     self.display_toggle = ctk.CTkButton(
-      self, text = "Mouvements",
+      self, 
       padx = 100,
-      text_font = font.Font(size = 40),
-      command = self.toggle_display
+      text = "Mouvements",
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blueHover"),
+      text_font = font.Font(size = 40, family = self.fontPolicy),
+      command = self.toggle_display,
     )
-    self.display_toggle.grid(row = 0, column = 4, sticky = ctk.E)
+    self.display_toggle.grid(row = 0, column = 4, sticky = ctk.EW)
 
   
   def increment_state(self, increment:int):
