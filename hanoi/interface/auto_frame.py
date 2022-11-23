@@ -93,7 +93,8 @@ class AutoFrame(ctk.CTkFrame):
 
     self.separator2 = ctk.CTkLabel(
       self, text = "--------------------------------------------",
-      text_font = font.Font(size = 15, family = self.fontPolicy)
+      text_font = font.Font(size = 15, family = self.fontPolicy),
+      text_color = self.colors.get("darkBlue")
     ).grid(column = 0, row = 5, pady = 15, columnspan = 2)
   
   def update_speed(self, value):

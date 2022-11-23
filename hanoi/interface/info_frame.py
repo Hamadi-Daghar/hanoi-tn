@@ -30,6 +30,7 @@ class InfoFrame(ctk.CTkFrame):
 
     self.separator1 = ctk.CTkLabel(
       self, 
+      text_color = self.colors.get("darkBlue"),
       text = "--------------------------------------------",
       text_font = font.Font(size = 15, family = self.fontPolicy)
     )
@@ -82,7 +83,8 @@ class InfoFrame(ctk.CTkFrame):
     )
 
     self.separator2 = ctk.CTkLabel(
-      self, 
+      self,
+      text_color = self.colors.get("darkBlue"),
       text = "--------------------------------------------",
       text_font = font.Font(size = 15, family = self.fontPolicy)
     )
