@@ -3,7 +3,6 @@ Manipule les tours de Hanoï sous la forme d'une liste de listes d'entiers [[],[
 Les entiers représentent des disques, avec 1 le plus petit.
 """
 
-# import hanoi.logic.state as state
 
 def compute_state(nbr_disques: int, etat: int)-> list[list[int]]:
   """Retourne l'état des tours à l'état etat pour nbr_disques disques.
