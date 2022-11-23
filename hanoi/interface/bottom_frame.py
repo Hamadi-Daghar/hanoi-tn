@@ -86,7 +86,7 @@ class BottomFrame(ctk.CTkFrame):
 
     #toggle état/mouvement
     self.display_toggle = ctk.CTkButton(
-      self, 
+      self,
       padx = 100,
       text = "Mouvements",
       fg_color = self.colors.get("blue"),
