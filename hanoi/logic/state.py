@@ -34,7 +34,10 @@ class State():
   @classmethod
   def increment_state(cls, increment:int)-> None:
     #ok
-    cls.towers_state = towers.neighbor_state(cls.disk_amount, cls.state, cls.towers_state, increment)
+    if abs(increment) <= 100:
+      cls.towers_state = towers.neighbor_state(cls.disk_amount, cls.state, cls.towers_state, increment)
+    else:
+      cls.towers_state = towers.compute_state(cls.disk_amount, cls.state + increment)
     cls.state += increment
     if cls.state < 0:
       cls.state = 0
