@@ -2,11 +2,12 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
+from hanoi.logic.state import State
 import hanoi.logic.temporality as temporality
 
 class InfoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -14,7 +15,6 @@ class InfoFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3,4), weight = 1)
 
     self.parent = parent
-    self.speed_var = speed_var
 
     #titre
     self.title = ctk.CTkLabel(
@@ -69,7 +69,10 @@ class InfoFrame(ctk.CTkFrame):
       pady = 10
     )
   
-  def update_display(self, state, move_display):
+  def update_display(self):
+
+    state = State.state
+    move_display = State.move_display
     
     self.progress.configure(
       text = f"{ format( round(((state)/(2**20 - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
@@ -87,5 +90,5 @@ class InfoFrame(ctk.CTkFrame):
     ))
 
     self.remaining_time.configure(text = (
-      "Temps restant :\n" + temporality.render_time(temporality.remaining_time(state, self.speed_var.get()))
+      "Temps restant :\n" + temporality.render_time(temporality.remaining_time(state, State.speed))
     ))

@@ -8,7 +8,7 @@ import hanoi.logic.state as state
 
 class AutoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -17,7 +17,6 @@ class AutoFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3,4), weight = 1)
 
     self.parent = parent
-    self.speed_var = speed_var
     self.auto_mode = False
     self.steps = { #speed : (delay, step)
       1 : (1000, 1),
@@ -56,7 +55,8 @@ class AutoFrame(ctk.CTkFrame):
 
     self.speed_readout = ctk.CTkLabel(
       self, 
-      textvariable = self.speed_var,
+      # textvariable = state.State.speed,
+      text = state.State.speed,
       text_font = font.Font(size = 35)
     )
     self.speed_readout.grid(
@@ -84,7 +84,8 @@ class AutoFrame(ctk.CTkFrame):
   
 
   def update_speed(self, value):
-    self.speed_var.set(int(10**value))
+    state.State.speed = int(10**value)
+    self.speed_readout.configure(text = str(state.State.speed))
     self.parent.parent.update_display()
 
   def toggle_auto(self):
@@ -95,7 +96,7 @@ class AutoFrame(ctk.CTkFrame):
       self.auto_run()
 
   def auto_run(self):
-    speed:int = self.speed_var.get()
+    speed:int = state.State.speed
     if self.auto_mode:
       state.State.increment_state(self.steps[speed][1])
       self.parent.parent.update_display()

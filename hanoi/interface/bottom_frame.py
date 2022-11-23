@@ -9,11 +9,11 @@ import hanoi.logic.state as state
 
 class BottomFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     self.parent = parent
-    self.speed_var = speed_var
+    # self.speed_var = speed_var
 
     self.rewind_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "rewind.png")
@@ -45,7 +45,7 @@ class BottomFrame(ctk.CTkFrame):
     self.back_button = ctk.CTkButton(
       self,
       text = "", image = self.previous_icon,
-      command = lambda: self.increment_state(-self.speed_var.get())
+      command = lambda: self.increment_state(-state.State.speed)
     )
     self.back_button.grid(
       row = 0, column = 1, padx = 10
@@ -55,7 +55,7 @@ class BottomFrame(ctk.CTkFrame):
     self.forward_button = ctk.CTkButton(
       self,
       text = "", image = self.next_icon,
-      command = lambda: self.increment_state(self.speed_var.get())
+      command = lambda: self.increment_state(state.State.speed)
     )
     self.forward_button.grid(
       row = 0, column = 2, padx = 10
@@ -94,5 +94,5 @@ class BottomFrame(ctk.CTkFrame):
     self.parent.update_display()
 
   def toggle_display(self):
-    self.parent.move_display = not self.parent.move_display
+    state.State.move_display = not state.State.move_display
     self.parent.update_display()
