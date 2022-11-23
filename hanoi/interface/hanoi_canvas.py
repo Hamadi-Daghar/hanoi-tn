@@ -210,7 +210,6 @@ class HanoiCanvas(ctk.CTkCanvas):
   def update_display(self)-> None:
     self.delete("all")
     self.draw_setup()
-    print("CANVAS MOVE :", State.move)
     if State.move_display:
       self.draw_move(State.towers_state, State.move)
       # self.draw_move(*towers.current_state_and_move(20))

@@ -18,10 +18,6 @@ class App(ctk.CTk):
     self.fg_color = "#EBEBEC"
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
-    
-    # self.count = 0
-    # self.move_display = False
-    # self.speed_var = ctk.IntVar(self, value = 1)
 
     #grid
     self.columnconfigure(0, weight = 0)
@@ -50,18 +46,8 @@ class App(ctk.CTk):
     
   
   def update_display(self):
-    # print("speed_var : ", self.speed_var.get())
     self.right_frame.info_frame.update_display()
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (State.move_display) else "Mouvements")
     )
     self.canvas.update_display()
-  
-  # def increment_count(self):
-  #   self.count += 1
-  #   self.update_display()
-
-
-# if __name__ == "__main__":
-#   app = App()
-#   app.mainloop()
