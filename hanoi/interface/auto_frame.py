@@ -4,11 +4,11 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
-import hanoi.logic.state as state
+from hanoi.logic.state import State
 
 class AutoFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     #grid
@@ -17,7 +17,6 @@ class AutoFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3,4,5), weight = 1)
 
     self.parent = parent
-    self.speed_var = speed_var
     self.colors = parent.colors
     self.fontPolicy = parent.fontPolicy
     self.auto_mode = False
@@ -58,8 +57,9 @@ class AutoFrame(ctk.CTkFrame):
     self.separator1 = ctk.CTkLabel(self, text = "").grid(column = 0, row = 2, pady = 10)
 
     self.speed_readout = ctk.CTkLabel(
-      self,
-      textvariable = self.speed_var,
+      self, 
+      # textvariable = state.State.speed,
+      text = State.speed,
       text_color = self.colors.get("darkBlue"),
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
@@ -98,7 +98,8 @@ class AutoFrame(ctk.CTkFrame):
     ).grid(column = 0, row = 5, pady = 15, columnspan = 2)
   
   def update_speed(self, value):
-    self.speed_var.set(int(10**value))
+    State.speed = int(10**value)
+    self.speed_readout.configure(text = str(State.speed))
     self.parent.parent.update_display()
 
   def toggle_auto(self):
@@ -109,11 +110,11 @@ class AutoFrame(ctk.CTkFrame):
       self.auto_run()
 
   def auto_run(self):
-    speed:int = self.speed_var.get()
+    speed:int = State.speed
     if self.auto_mode:
-      state.State.increment_state(self.steps[speed][1])
+      State.increment_state(self.steps[speed][1])
       self.parent.parent.update_display()
-      if state.State.is_end_state():
+      if State.is_end_state():
         self.toggle_auto()
       else:
         self.after(self.steps[speed][0], self.auto_run)

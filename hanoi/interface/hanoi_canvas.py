@@ -2,7 +2,8 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
-import hanoi.logic.towers as towers
+# import hanoi.logic.towers as towers
+from hanoi.logic.state import State
 
 class HanoiCanvas(ctk.CTkCanvas):
 
@@ -209,7 +210,9 @@ class HanoiCanvas(ctk.CTkCanvas):
   def update_display(self)-> None:
     self.delete("all")
     self.draw_setup()
-    if self.parent.move_display:
-      self.draw_move(*towers.current_state_and_move(20))
+    if State.move_display:
+      self.draw_move(State.towers_state, State.move)
+      # self.draw_move(*towers.current_state_and_move(20))
     else:
-      self.draw_state(towers.current_state(20))
+      self.draw_state(State.towers_state)
+      # self.draw_state(towers.current_state(20))

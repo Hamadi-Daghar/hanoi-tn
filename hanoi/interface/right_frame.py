@@ -12,7 +12,7 @@ import hanoi.interface.info_frame as info_frame
 
 class RightFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     self.columnconfigure((0,1), weight = 1)
@@ -61,13 +61,13 @@ class RightFrame(ctk.CTkFrame):
       padx = 15, pady = 10
     )
 
-    self.info_frame = info_frame.InfoFrame(self, speed_var, fg_color = self.colors.get("grey"))
+    self.info_frame = info_frame.InfoFrame(self, fg_color = self.colors.get("grey"))
     self.info_frame.grid(
       column = 0, row = 1, columnspan = 2,
       sticky = ctk.EW
     )
 
-    self.auto_frame = auto_frame.AutoFrame(self, speed_var, fg_color = self.colors.get("grey"))
+    self.auto_frame = auto_frame.AutoFrame(self, fg_color = self.colors.get("grey"))
     self.auto_frame.grid(
       column = 0, row = 2, columnspan = 2,
       sticky = ctk.EW

@@ -4,16 +4,15 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
-import hanoi.logic.state as state
+from hanoi.logic.state import State
 # from hanoi.app import App
 
 class BottomFrame(ctk.CTkFrame):
 
-  def __init__(self, parent, speed_var, *args, **kwargs):
+  def __init__(self, parent, *args, **kwargs):
     super().__init__(parent, *args, **kwargs)
 
     self.parent = parent
-    self.speed_var = speed_var
     self.colors = parent.colors
     self.fontPolicy = parent.fontPolicy
 
@@ -53,7 +52,7 @@ class BottomFrame(ctk.CTkFrame):
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blueHover"),
       image = self.previous_icon,
-      command = lambda: self.increment_state(-self.speed_var.get())
+      command = lambda: self.increment_state(-State.speed)
     )
     self.back_button.grid(
       row = 0, column = 1, padx = 10
@@ -66,7 +65,7 @@ class BottomFrame(ctk.CTkFrame):
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blueHover"),
       image = self.next_icon,
-      command = lambda: self.increment_state(self.speed_var.get())
+      command = lambda: self.increment_state(State.speed)
     )
     self.forward_button.grid(
       row = 0, column = 2, padx = 10
@@ -99,17 +98,17 @@ class BottomFrame(ctk.CTkFrame):
 
   
   def increment_state(self, increment:int):
-    state.State.increment_state(increment)
+    State.increment_state(increment)
     self.parent.update_display()
 
   def start_state(self):
-    state.State.start_state()
+    State.start_state()
     self.parent.update_display()
 
   def end_state(self):
-    state.State.end_state()
+    State.end_state()
     self.parent.update_display()
 
   def toggle_display(self):
-    self.parent.move_display = not self.parent.move_display
+    State.move_display = not State.move_display
     self.parent.update_display()
