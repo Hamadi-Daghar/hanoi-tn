@@ -64,7 +64,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_readout.grid(
-      column = 0, row = 3
+      column = 0, row = 3, sticky = ctk.E
     )
 
     self.speed_unit = ctk.CTkLabel(
@@ -73,7 +73,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_unit.grid(
-      column = 1, row = 3
+      column = 1, row = 3, sticky = ctk.W
     )
 
     self.speed_slider = ctk.CTkSlider(
