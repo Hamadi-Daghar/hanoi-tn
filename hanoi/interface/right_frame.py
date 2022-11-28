@@ -33,6 +33,8 @@ class RightFrame(ctk.CTkFrame):
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "smaller.png"),
     ).subsample(3)
 
+    #Boutons fenêtre
+
     self.window_button = ctk.CTkButton(
       self, text = "",
       corner_radius = 15,
@@ -43,7 +45,7 @@ class RightFrame(ctk.CTkFrame):
     )
     self.window_button.grid(
       column = 0, row = 0, 
-      sticky = ctk.E, 
+      sticky = ctk.E + ctk.N, 
       padx = 15, pady = 10
     )
 
@@ -57,27 +59,47 @@ class RightFrame(ctk.CTkFrame):
     )
     self.quit_button.grid(
       column = 1, row = 0,
-      sticky = ctk.W, 
+      sticky = ctk.W + ctk.N, 
       padx = 15, pady = 10
     )
 
+    #Info frame
+
     self.info_frame = info_frame.InfoFrame(self, fg_color = self.colors.get("grey"))
-    self.info_frame.grid(
-      column = 0, row = 1, columnspan = 2,
-      sticky = ctk.EW
-    )
+    self.info_frame.stage()
+
+    #Frame dépendant du mode
+
+    #Mode Démo
 
     self.auto_frame = auto_frame.AutoFrame(self, fg_color = self.colors.get("grey"))
-    self.auto_frame.grid(
-      column = 0, row = 2, columnspan = 2,
-      sticky = ctk.EW
-    )
+
+    #Mode Fil rouge
 
     self.fil_rouge_frame = fil_rouge_frame.FilRougeFrame(self, fg_color = self.colors.get("grey"))
-    self.fil_rouge_frame.grid(
-      column = 0, row = 3, columnspan = 2,
-      sticky = ctk.EW
+    
+
+    #Switch mode
+
+    ####################
+    self.mode_switch = ctk.CTkButton(
+      self, text = "Fil Rouge",
+      text_font = font.Font(size = 30),
+      text_color = self.colors.get("darkBlue"),
+      command = self.parent.switch_view
     )
+    self.mode_switch.grid(
+      column = 0, row = 3, 
+      columnspan = 2,
+      pady = 50,
+      sticky = ctk.S
+    )
+    ####################
+
+    self.demo_view()
+
+
+
   
   def toggle_window(self):
     if self.fullscreen == True:
@@ -87,3 +109,17 @@ class RightFrame(ctk.CTkFrame):
       self.parent.attributes("-fullscreen", True)
       self.window_button.configure(image = self.smaller_icon)
     self.fullscreen = not self.fullscreen
+  
+  def demo_view(self)-> None: 
+    """Passe à la vue du mode Démo.
+    """
+    self.fil_rouge_frame.grid_forget()
+    self.auto_frame.stage()
+    self.mode_switch.configure(text = "Fil Rouge")
+  
+  def fil_rouge_view(self)-> None:
+    """Passe à la vue du mode Fil Rouge.
+    """
+    self.auto_frame.grid_forget()
+    self.fil_rouge_frame.stage()
+    self.mode_switch.configure(text = "Démo")

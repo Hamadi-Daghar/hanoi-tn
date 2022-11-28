@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 import tkinter.font as font
+import tkinter.ttk as ttk
 
 import customtkinter as ctk
 
@@ -64,7 +65,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_readout.grid(
-      column = 0, row = 3
+      column = 0, row = 3, sticky = ctk.E
     )
 
     self.speed_unit = ctk.CTkLabel(
@@ -73,7 +74,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.fontPolicy)
     )
     self.speed_unit.grid(
-      column = 1, row = 3
+      column = 1, row = 3, sticky = ctk.W
     )
 
     self.speed_slider = ctk.CTkSlider(
@@ -91,11 +92,17 @@ class AutoFrame(ctk.CTkFrame):
       column = 0, row = 4, columnspan = 2
     )
 
-    self.separator2 = ctk.CTkLabel(
-      self, text = "--------------------------------------------",
-      text_font = font.Font(size = 15, family = self.fontPolicy),
-      text_color = self.colors.get("darkBlue")
-    ).grid(column = 0, row = 5, pady = 15, columnspan = 2)
+    ttk.Separator(
+      self, orient = "horizontal"
+    ).grid(
+      column = 0, row = 5, pady = 15, columnspan = 2, sticky = ctk.EW 
+    )
+
+    # self.separator2 = ctk.CTkLabel(
+    #   self, text = "--------------------------------------------",
+    #   text_font = font.Font(size = 15, family = self.fontPolicy),
+    #   text_color = self.colors.get("darkBlue")
+    # ).grid(column = 0, row = 5, pady = 15, columnspan = 2)
   
   def update_speed(self, value):
     State.speed = int(10**value)
@@ -118,3 +125,11 @@ class AutoFrame(ctk.CTkFrame):
         self.toggle_auto()
       else:
         self.after(self.steps[speed][0], self.auto_run)
+  
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+      column = 0, row = 2, columnspan = 2,
+      sticky = ctk.EW
+    )

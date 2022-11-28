@@ -16,6 +16,8 @@ class State():
   move: tuple[int, int] = towers.compute_next_move(disk_amount, state, towers_state)
   #Vitesse de mouvement actuelle (mouvement/s)
   speed: int = 1
+  #Mode du logiciel
+  mode: str = ""
 
   @classmethod
   def start_state(cls)-> None:
