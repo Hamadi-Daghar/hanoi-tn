@@ -125,3 +125,11 @@ class AutoFrame(ctk.CTkFrame):
         self.toggle_auto()
       else:
         self.after(self.steps[speed][0], self.auto_run)
+  
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+      column = 0, row = 2, columnspan = 2,
+      sticky = ctk.EW
+    )

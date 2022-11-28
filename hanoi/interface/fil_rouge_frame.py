@@ -33,3 +33,11 @@ class FilRougeFrame(ctk.CTkFrame):
     self.placeholder.grid(
       column = 0, row = 1
     )
+
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+      column = 0, row = 2, columnspan = 2,
+      sticky = ctk.EW
+    )

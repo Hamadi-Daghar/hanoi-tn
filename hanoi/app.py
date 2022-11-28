@@ -1,6 +1,7 @@
 import customtkinter as ctk
 
 import hanoi.interface.bottom_frame as bottom_frame
+import hanoi.interface.fil_control_frame as fil_control_frame
 import hanoi.interface.hanoi_canvas as  hanoi_canvas
 import hanoi.interface.right_frame as right_frame 
 from hanoi.logic.state import State
@@ -47,18 +48,19 @@ class App(ctk.CTk):
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)
 
     #bottom frame
-    self.bottom_frame = bottom_frame.BottomFrame(self, fg_color = self.colors.get("grey"))
-    self.bottom_frame.grid(
-      column = 0, row = 1, 
-      padx = 88, pady = 10
-    )
     
+    self.bottom_frame = bottom_frame.BottomFrame(self, fg_color = self.colors.get("grey"))
+
+    self.fil_control_frame = fil_control_frame.FilControlFrame(self, fg_color = self.colors.get("grey"))
+
     #right frame
     self.right_frame = right_frame.RightFrame(self, fg_color = self.colors.get("grey"))
     self.right_frame.grid(
-      column = 1, row = 0, sticky = ctk.N + ctk.EW
+      column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
     )
+
     
+    self.demo_view()
     self.update_display()
     
   
@@ -68,3 +70,25 @@ class App(ctk.CTk):
       text = ("États" if (State.move_display) else "Mouvements")
     )
     self.canvas.update_display()
+  
+  def demo_view(self):
+    self.fil_control_frame.grid_forget()
+    self.bottom_frame.stage()
+
+    self.right_frame.demo_view()
+
+    State.mode = "demo"
+  
+  def fil_rouge_view(self):
+    self.bottom_frame.grid_forget()
+    self.fil_control_frame.stage()
+
+    self.right_frame.fil_rouge_view()
+
+    State.mode = "fil rouge"
+  
+  def switch_view(self):
+    if State.mode == "demo":
+      self.fil_rouge_view()
+    else:
+      self.demo_view()

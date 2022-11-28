@@ -130,3 +130,11 @@ class InfoFrame(ctk.CTkFrame):
     self.remaining_time.configure(text = (
       "Temps restant : " + temporality.render_time(temporality.remaining_time(state, State.speed))
     ))
+  
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+      column = 0, row = 1, columnspan = 2,
+      sticky = ctk.EW
+    )
