@@ -111,13 +111,25 @@ class RightFrame(ctk.CTkFrame):
   def demo_view(self)-> None: 
     """Passe à la vue du mode Démo.
     """
+    #Changement de frame : auto_frame
     self.fil_rouge_frame.grid_forget()
     self.auto_frame.stage()
+
+    #MaJ texte de mode_switch
     self.mode_switch.configure(text = "Fil Rouge")
+
+    #Changement de vue de info_frame
+    self.info_frame.demo_view()
   
   def fil_rouge_view(self)-> None:
     """Passe à la vue du mode Fil Rouge.
     """
+    #Changement de frame : fil_rouge_frame
     self.auto_frame.grid_forget()
     self.fil_rouge_frame.stage()
+
+    #MaJ texte de mode_switch
     self.mode_switch.configure(text = "Démo")
+    
+    #Changement de vue de info_frame
+    self.info_frame.fil_rouge_view()
