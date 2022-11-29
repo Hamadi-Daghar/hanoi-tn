@@ -20,7 +20,9 @@ class AutoFrame(ctk.CTkFrame):
     self.parent = parent
     self.colors = parent.colors
     self.font_family = parent.font_family
+    
     self.auto_mode = False
+    self.identifier = "" #identifiant du callback en cours
     self.steps = { #speed : (delay, step)
       1 : (1000, 1),
       10 : (100, 1),
@@ -115,6 +117,9 @@ class AutoFrame(ctk.CTkFrame):
     #TODO : toggle icon
     if self.auto_mode is True:
       self.auto_run()
+    else:
+      self.after_cancel(self.identifier)
+      self.identifier = ""
 
   def auto_run(self):
     speed:int = State.speed
@@ -124,7 +129,7 @@ class AutoFrame(ctk.CTkFrame):
       if State.is_end_state():
         self.toggle_auto()
       else:
-        self.after(self.steps[speed][0], self.auto_run)
+        self.identifier = self.after(self.steps[speed][0], self.auto_run)
   
   def stage(self)-> None:
     """Fait apparaître la frame sur l'interface.
