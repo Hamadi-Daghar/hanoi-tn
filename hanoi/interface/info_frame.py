@@ -85,6 +85,7 @@ class InfoFrame(ctk.CTkFrame):
     )
 
     self.demo_frame.update_display()
+    self.fil_frame.update_display()
 
     # self.main_state.configure(text = (
     #   f"Mouvement {state + 1}" if move_display else 

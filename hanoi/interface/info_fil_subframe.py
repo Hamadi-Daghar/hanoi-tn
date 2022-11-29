@@ -24,12 +24,12 @@ class InfoFilSubframe(ctk.CTkFrame):
     # Label Temps Restant
 
     self.label_title = ctk.CTkLabel(
-      self, text = "Temps Restant au rythme de...",
+      self, text = "Date de fin au rythme de...",
       text_color = self.colors.get("dark_blue"),
       text_font = font.Font(size = 20, family = self.font_family, weight = "bold")
     )
     self.label_title.grid(
-      column = 0, row = 0, 
+      column = 0, row = 0, pady = 10
     )
 
     # Estimations 
@@ -52,11 +52,11 @@ class InfoFilSubframe(ctk.CTkFrame):
 
     self.result_second = ctk.CTkLabel(
       self, text = "default s",
-      text_color = self.colors.get("green"),
+      text_color = self.colors.get("dark_red"),
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_second.grid(
-      column = 0, row = 2, sticky = ctk.E
+      column = 0, row = 2, sticky = ctk.EW, pady = 10
     )
 
 
@@ -81,7 +81,7 @@ class InfoFilSubframe(ctk.CTkFrame):
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_minute.grid(
-      column = 0, row = 4, sticky = ctk.E
+      column = 0, row = 4, sticky = ctk.EW, pady = 10
     )
 
 
@@ -102,11 +102,11 @@ class InfoFilSubframe(ctk.CTkFrame):
 
     self.result_hour = ctk.CTkLabel(
       self, text = "default h",
-      text_color = self.colors.get("dark_cyan"),
+      text_color = self.colors.get("dark_red"),
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_hour.grid(
-      column = 0, row = 6, sticky = ctk.E
+      column = 0, row = 6, sticky = ctk.EW, pady = 10
     )
 
 
@@ -127,18 +127,24 @@ class InfoFilSubframe(ctk.CTkFrame):
 
     self.result_day = ctk.CTkLabel(
       self, text = "default j",
-      text_color = self.colors.get("red"),
+      text_color = self.colors.get("dark_red"),
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_day.grid(
-      column = 0, row = 8, sticky = ctk.E
+      column = 0, row = 8, sticky = ctk.EW, pady = 10
     )
+
+    self.update_display()
 
   
   def update_display(self):
 
     state = State.state
-    move_display = State.move_display
+
+    self.result_second.configure(text = temporality.end_date(temporality.remaining_time(state, 1)))
+    self.result_minute.configure(text = temporality.end_date(temporality.remaining_time(state, 1/60)))
+    self.result_hour.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60))))
+    self.result_day.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60*24))))
   
   def stage(self)-> None:
     """Fait apparaître la frame sur l'interface.
