@@ -112,3 +112,12 @@ class BottomFrame(ctk.CTkFrame):
   def toggle_display(self):
     State.move_display = not State.move_display
     self.parent.update_display()
+
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+    column = 0, row = 1, 
+    padx = 88, pady = 10,
+    sticky = ctk.NS
+  )

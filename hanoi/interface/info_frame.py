@@ -1,4 +1,5 @@
 import tkinter.font as font
+import tkinter.ttk as ttk
 
 import customtkinter as ctk
 
@@ -28,17 +29,23 @@ class InfoFrame(ctk.CTkFrame):
       column = 0, row = 0, 
     )
 
-    self.separator1 = ctk.CTkLabel(
-      self, 
-      text_color = self.colors.get("darkBlue"),
-      text = "--------------------------------------------",
-      text_font = font.Font(size = 15, family = self.fontPolicy)
+    ttk.Separator(
+      self, orient = "horizontal"
+    ).grid(
+      column = 0, row = 1, pady = 15, sticky = ctk.EW 
     )
-    self.separator1.grid(
-      column = 0, 
-      row = 1,
-      pady = 10
-    )
+
+    # self.separator1 = ctk.CTkLabel(
+    #   self, 
+    #   text_color = self.colors.get("darkBlue"),
+    #   text = "--------------------------------------------",
+    #   text_font = font.Font(size = 15, family = self.fontPolicy)
+    # )
+    # self.separator1.grid(
+    #   column = 0, 
+    #   row = 1,
+    #   pady = 10
+    # )
 
     #progression
     self.progress = ctk.CTkLabel(
@@ -82,17 +89,23 @@ class InfoFrame(ctk.CTkFrame):
       pady = 20
     )
 
-    self.separator2 = ctk.CTkLabel(
-      self,
-      text_color = self.colors.get("darkBlue"),
-      text = "--------------------------------------------",
-      text_font = font.Font(size = 15, family = self.fontPolicy)
+    ttk.Separator(
+      self, orient = "horizontal"
+    ).grid(
+      column = 0, row = 6, pady = 15, sticky = ctk.EW 
     )
-    self.separator2.grid(
-      column = 0, 
-      row = 6,
-      pady = 10
-    )
+
+    # self.separator2 = ctk.CTkLabel(
+    #   self,
+    #   text_color = self.colors.get("darkBlue"),
+    #   text = "--------------------------------------------",
+    #   text_font = font.Font(size = 15, family = self.fontPolicy)
+    # )
+    # self.separator2.grid(
+    #   column = 0, 
+    #   row = 6,
+    #   pady = 10
+    # )
   
   def update_display(self):
 
@@ -117,3 +130,11 @@ class InfoFrame(ctk.CTkFrame):
     self.remaining_time.configure(text = (
       "Temps restant : " + temporality.render_time(temporality.remaining_time(state, State.speed))
     ))
+  
+  def stage(self)-> None:
+    """Fait apparaître la frame sur l'interface.
+    """
+    self.grid(
+      column = 0, row = 1, columnspan = 2,
+      sticky = ctk.EW
+    )
