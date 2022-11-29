@@ -12,7 +12,7 @@ class FilControlFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.colors = parent.colors
-    self.fontPolicy = parent.fontPolicy
+    self.font_family = parent.font_family
 
     #grid
     self.columnconfigure((0,1,2,3,4), weight = 1)
@@ -20,8 +20,8 @@ class FilControlFrame(ctk.CTkFrame):
 
     self.title = ctk.CTkLabel(
       self, text = "Contrôles Fil Rouge",
-      text_color = self.colors.get("darkBlue"),
-      text_font = font.Font(size = 40, family = self.fontPolicy, weight = "bold")
+      text_color = self.colors.get("dark_blue"),
+      text_font = font.Font(size = 40, family = self.font_family, weight = "bold")
     )
     self.title.grid(
       column = 2, row = 0, 

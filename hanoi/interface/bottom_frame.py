@@ -14,7 +14,7 @@ class BottomFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.colors = parent.colors
-    self.fontPolicy = parent.fontPolicy
+    self.font_family = parent.font_family
 
     self.rewind_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "rewind.png")
@@ -37,7 +37,7 @@ class BottomFrame(ctk.CTkFrame):
       self,
       text = "",
       fg_color = self.colors.get("blue"),
-      hover_color = self.colors.get("blueHover"),
+      hover_color = self.colors.get("blue_hover"),
       image = self.rewind_icon,
       command = self.start_state
     )
@@ -50,7 +50,7 @@ class BottomFrame(ctk.CTkFrame):
       self,
       text = "", 
       fg_color = self.colors.get("blue"),
-      hover_color = self.colors.get("blueHover"),
+      hover_color = self.colors.get("blue_hover"),
       image = self.previous_icon,
       command = lambda: self.increment_state(-State.speed)
     )
@@ -63,7 +63,7 @@ class BottomFrame(ctk.CTkFrame):
       self,
       text = "",
       fg_color = self.colors.get("blue"),
-      hover_color = self.colors.get("blueHover"),
+      hover_color = self.colors.get("blue_hover"),
       image = self.next_icon,
       command = lambda: self.increment_state(State.speed)
     )
@@ -76,7 +76,7 @@ class BottomFrame(ctk.CTkFrame):
       self,
       text = "",
       fg_color = self.colors.get("blue"),
-      hover_color = self.colors.get("blueHover"),
+      hover_color = self.colors.get("blue_hover"),
       image = self.forward_icon,
       command = self.end_state
     )
@@ -86,12 +86,12 @@ class BottomFrame(ctk.CTkFrame):
 
     #toggle état/mouvement
     self.display_toggle = ctk.CTkButton(
-      self, 
+      self,
       padx = 100,
       text = "Mouvements",
       fg_color = self.colors.get("blue"),
-      hover_color = self.colors.get("blueHover"),
-      text_font = font.Font(size = 40, family = self.fontPolicy),
+      hover_color = self.colors.get("blue_hover"),
+      text_font = font.Font(size = 40, family = self.font_family),
       command = self.toggle_display,
     )
     self.display_toggle.grid(row = 0, column = 4, sticky = ctk.EW)

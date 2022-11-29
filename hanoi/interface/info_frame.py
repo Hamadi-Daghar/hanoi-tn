@@ -17,13 +17,13 @@ class InfoFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.colors = parent.colors
-    self.fontPolicy = parent.fontPolicy
+    self.font_family = parent.font_family
 
     #titre
     self.title = ctk.CTkLabel(
       self, text = "Tours de Hanoï",
-      text_color = self.colors.get('darkBlue'),
-      text_font = font.Font(size = 35, family = self.fontPolicy, weight = "bold")
+      text_color = self.colors.get('dark_blue'),
+      text_font = font.Font(size = 35, family = self.font_family, weight = "bold")
     )
     self.title.grid(
       column = 0, row = 0, 
@@ -37,9 +37,9 @@ class InfoFrame(ctk.CTkFrame):
 
     # self.separator1 = ctk.CTkLabel(
     #   self, 
-    #   text_color = self.colors.get("darkBlue"),
+    #   text_color = self.colors.get("dark_blue"),
     #   text = "--------------------------------------------",
-    #   text_font = font.Font(size = 15, family = self.fontPolicy)
+    #   text_font = font.Font(size = 15, family = self.font_family)
     # )
     # self.separator1.grid(
     #   column = 0, 
@@ -50,8 +50,8 @@ class InfoFrame(ctk.CTkFrame):
     #progression
     self.progress = ctk.CTkLabel(
       self,
-      text_color = self.colors.get('darkBlue'),
-      text_font = font.Font(size = 18, family = self.fontPolicy)
+      text_color = self.colors.get('dark_blue'),
+      text_font = font.Font(size = 18, family = self.font_family)
     )
     self.progress.grid(
       column = 0, row = 2,
@@ -61,8 +61,8 @@ class InfoFrame(ctk.CTkFrame):
     #état/mouvement principal
     self.main_state = ctk.CTkLabel(
       self,
-      text_color = self.colors.get('darkBlue'),
-      text_font = font.Font(size = 18, family = self.fontPolicy), 
+      text_color = self.colors.get('dark_blue'),
+      text_font = font.Font(size = 18, family = self.font_family), 
     )
     self.main_state.grid(
       column = 0, row = 3
@@ -71,8 +71,8 @@ class InfoFrame(ctk.CTkFrame):
     #état mouvement secondaire
     self.secondary_state = ctk.CTkLabel(
       self,
-      text_color = self.colors.get('darkBlue'),
-      text_font = font.Font(size = 18, family = self.fontPolicy)
+      text_color = self.colors.get('dark_blue'),
+      text_font = font.Font(size = 18, family = self.font_family)
     )
     self.secondary_state.grid(
       column = 0, row = 4
@@ -81,8 +81,8 @@ class InfoFrame(ctk.CTkFrame):
     #temps restant
     self.remaining_time = ctk.CTkLabel(
       self,
-      text_color = self.colors.get('darkBlue'),
-      text_font = font.Font(size = 18, family = self.fontPolicy)
+      text_color = self.colors.get('dark_blue'),
+      text_font = font.Font(size = 18, family = self.font_family)
     )
     self.remaining_time.grid(
       column = 0, row = 5,
@@ -97,9 +97,9 @@ class InfoFrame(ctk.CTkFrame):
 
     # self.separator2 = ctk.CTkLabel(
     #   self,
-    #   text_color = self.colors.get("darkBlue"),
+    #   text_color = self.colors.get("dark_blue"),
     #   text = "--------------------------------------------",
-    #   text_font = font.Font(size = 15, family = self.fontPolicy)
+    #   text_font = font.Font(size = 15, family = self.font_family)
     # )
     # self.separator2.grid(
     #   column = 0, 

@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import json
 
 import hanoi.interface.bottom_frame as bottom_frame
 import hanoi.interface.fil_control_frame as fil_control_frame
@@ -14,30 +15,16 @@ class App(ctk.CTk):
     self.title("Hanoi mockup")
     self.geometry("1920x1080")
     self.resizable(False, False)
-    self.attributes("-fullscreen", True)
-
-    self.colors = {
-      "blueHover": "#117DBD",
-      "lightBlue": "#95D1F5",
-      "darkBlue": "#1A182D",
-      "darkCyan": "#40E0D0",
-      "darkRed": "#B22222",
-      "yellow": "#F9BB12",
-      "white": "#FFFFFF",
-      "green": "#00A19A",
-      "grey": "#EBEBEC",
-      "cyan": "#00FFFF",
-      "blue": "#24A1EB",
-      "red": "#DC143C"
-    }
-
-    self.fontPolicy = "Poppins"
+    #self.attributes("-fullscreen", True)
+    
+    self.colors = json.load(open('./hanoi/colors.json'))
+    self.font_family = "Poppins"
 
     self.fg_color = self.colors.get("grey")
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
 
-    #grid
+    #grid 
     self.columnconfigure(0, weight = 0)
     self.columnconfigure(1, weight = 1)
     self.rowconfigure(0, weight = 0)

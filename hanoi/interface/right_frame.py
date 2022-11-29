@@ -20,7 +20,7 @@ class RightFrame(ctk.CTkFrame):
 
     self.parent = parent
     self.colors = parent.colors
-    self.fontPolicy = parent.fontPolicy
+    self.font_family = parent.font_family
 
     self.cross_icon = tk.PhotoImage(
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "cross.png"),
@@ -38,7 +38,7 @@ class RightFrame(ctk.CTkFrame):
       self, text = "",
       corner_radius = 15,
       fg_color = self.colors.get("cyan"),
-      hover_color = self.colors.get("darkCyan"),
+      hover_color = self.colors.get("dark_cyan"),
       image = self.smaller_icon if self.parent.attributes("-fullscreen") else self.larger_icon,
       command = self.toggle_window
     )
@@ -52,7 +52,7 @@ class RightFrame(ctk.CTkFrame):
       self, text = "",
       corner_radius = 15,
       fg_color = self.colors.get("red"),
-      hover_color = self.colors.get("darkRed"),
+      hover_color = self.colors.get("dark_red"),
       image = self.cross_icon,
       command = exit
     )
@@ -84,7 +84,7 @@ class RightFrame(ctk.CTkFrame):
     self.mode_switch = ctk.CTkButton(
       self, text = "Fil Rouge",
       text_font = font.Font(size = 30),
-      text_color = self.colors.get("darkBlue"),
+      text_color = self.colors.get("dark_blue"),
       command = self.parent.switch_view
     )
     self.mode_switch.grid(
