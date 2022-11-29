@@ -19,7 +19,6 @@ class RightFrame(ctk.CTkFrame):
     self.rowconfigure((0,1,2,3), weight = 1)
 
     self.parent = parent
-    self.fullscreen = True
     self.colors = parent.colors
     self.fontPolicy = parent.fontPolicy
 
@@ -40,7 +39,7 @@ class RightFrame(ctk.CTkFrame):
       corner_radius = 15,
       fg_color = self.colors.get("cyan"),
       hover_color = self.colors.get("darkCyan"),
-      image = self.smaller_icon,
+      image = self.smaller_icon if self.parent.attributes("-fullscreen") else self.larger_icon,
       command = self.toggle_window
     )
     self.window_button.grid(
@@ -102,13 +101,12 @@ class RightFrame(ctk.CTkFrame):
 
   
   def toggle_window(self):
-    if self.fullscreen == True:
+    if self.parent.attributes("-fullscreen") == True:
       self.parent.attributes("-fullscreen", False)
       self.window_button.configure(image = self.larger_icon)
     else:
       self.parent.attributes("-fullscreen", True)
       self.window_button.configure(image = self.smaller_icon)
-    self.fullscreen = not self.fullscreen
   
   def demo_view(self)-> None: 
     """Passe à la vue du mode Démo.
