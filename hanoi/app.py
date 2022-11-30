@@ -15,7 +15,7 @@ class App(ctk.CTk):
     self.title("Hanoi mockup")
     self.geometry("1920x1080")
     self.resizable(False, False)
-    #self.attributes("-fullscreen", True)
+    self.attributes("-fullscreen", True)
     
     self.colors = json.load(open('./hanoi/colors.json'))
     self.font_family = "Poppins"
@@ -53,6 +53,7 @@ class App(ctk.CTk):
   
   def update_display(self):
     self.right_frame.info_frame.update_display()
+    self.right_frame.fil_rouge_frame.set_visiteurs(State.state + 1)
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (State.move_display) else "Mouvements")
     )

@@ -9,6 +9,8 @@ import hanoi.app as app
 import hanoi.interface.auto_frame as auto_frame
 import hanoi.interface.fil_rouge_frame as fil_rouge_frame
 import hanoi.interface.info_frame as info_frame
+from hanoi.logic.state import State
+import hanoi.logic.data as data
 
 class RightFrame(ctk.CTkFrame):
 
@@ -120,6 +122,9 @@ class RightFrame(ctk.CTkFrame):
 
     #Changement de vue de info_frame
     self.info_frame.demo_view()
+
+    #Réinitialisation de l'état
+    State.start_state()
   
   def fil_rouge_view(self)-> None:
     """Passe à la vue du mode Fil Rouge.
@@ -133,3 +138,8 @@ class RightFrame(ctk.CTkFrame):
     
     #Changement de vue de info_frame
     self.info_frame.fil_rouge_view()
+
+    #Préparation de l'état
+    State.state_by_number(data.read_state())
+    State.move_display = True
+    self.parent.update_display()
