@@ -44,8 +44,8 @@ class InfoFrame(ctk.CTkFrame):
 
     self.progress = ctk.CTkLabel(
       self,
-      text_color = self.colors.get('dark_blue'),
-      text_font = font.Font(size = 18, family = self.font_family)
+      text_color = self.colors.get('green'),
+      text_font = font.Font(size = 25, family = self.font_family)
     )
     self.progress.grid(
       column = 0, row = 2,

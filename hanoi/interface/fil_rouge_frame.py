@@ -3,6 +3,8 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
+import hanoi.logic.data as data
+
 class FilRougeFrame(ctk.CTkFrame):
 
   def __init__(self, parent, *args, **kwargs):
@@ -32,6 +34,16 @@ class FilRougeFrame(ctk.CTkFrame):
     )
     self.placeholder.grid(
       column = 0, row = 1
+    )
+
+    self.button = ctk.CTkButton(
+      self, text = "Save State",
+      command = data.save_now,
+      text_color = self.colors.get("dark_blue"),
+      text_font = font.Font(size = 30, family = self.font_family)
+    )
+    self.button.grid(
+      column = 0, row = 2
     )
 
   def stage(self)-> None:
