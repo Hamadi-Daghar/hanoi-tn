@@ -37,7 +37,7 @@ class InfoFrame(ctk.CTkFrame):
     ttk.Separator(
       self, orient = "horizontal"
     ).grid(
-      column = 0, row = 1, pady = 15, sticky = ctk.EW 
+      column = 0, row = 1, pady = 5, sticky = ctk.EW 
     )
 
     #Progression (%)
@@ -49,7 +49,7 @@ class InfoFrame(ctk.CTkFrame):
     )
     self.progress.grid(
       column = 0, row = 2,
-      pady = 20
+      pady = 5
     )
 
     # Contenu dépendant du mode
@@ -68,7 +68,7 @@ class InfoFrame(ctk.CTkFrame):
     ttk.Separator(
       self, orient = "horizontal"
     ).grid(
-      column = 0, row = 4, pady = 15, sticky = ctk.EW 
+      column = 0, row = 4, pady = 5, sticky = ctk.EW 
     )
 
 

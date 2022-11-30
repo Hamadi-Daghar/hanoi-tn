@@ -90,7 +90,7 @@ class RightFrame(ctk.CTkFrame):
     self.mode_switch.grid(
       column = 0, row = 3, 
       columnspan = 2,
-      pady = 50,
+      pady = (10,50),
       sticky = ctk.S
     )
     ####################

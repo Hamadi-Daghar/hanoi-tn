@@ -26,7 +26,7 @@ class InfoFilSubframe(ctk.CTkFrame):
     self.label_title = ctk.CTkLabel(
       self, text = "Date de fin au rythme de...",
       text_color = self.colors.get("dark_blue"),
-      text_font = font.Font(size = 20, family = self.font_family, weight = "bold")
+      text_font = font.Font(size = 18, family = self.font_family, weight = "bold")
     )
     self.label_title.grid(
       column = 0, row = 0, pady = 10
@@ -56,7 +56,7 @@ class InfoFilSubframe(ctk.CTkFrame):
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_second.grid(
-      column = 0, row = 2, sticky = ctk.EW, pady = 10
+      column = 0, row = 2, sticky = ctk.EW, pady = 5
     )
 
 
@@ -81,7 +81,7 @@ class InfoFilSubframe(ctk.CTkFrame):
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_minute.grid(
-      column = 0, row = 4, sticky = ctk.EW, pady = 10
+      column = 0, row = 4, sticky = ctk.EW, pady = 5
     )
 
 
@@ -106,7 +106,7 @@ class InfoFilSubframe(ctk.CTkFrame):
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_hour.grid(
-      column = 0, row = 6, sticky = ctk.EW, pady = 10
+      column = 0, row = 6, sticky = ctk.EW, pady = 5
     )
 
 
@@ -131,7 +131,7 @@ class InfoFilSubframe(ctk.CTkFrame):
       text_font = font.Font(size = 20, family = self.font_family)
     )
     self.result_day.grid(
-      column = 0, row = 8, sticky = ctk.EW, pady = 10
+      column = 0, row = 8, sticky = ctk.EW, pady = 5
     )
 
     self.update_display()

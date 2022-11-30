@@ -25,7 +25,7 @@ class FilRougeFrame(ctk.CTkFrame):
     )
     self.title.grid(
       column = 0, row = 0,
-      pady = 10, sticky = ctk.W
+      pady = 5, sticky = ctk.W
     )
 
     self.placeholder = ctk.CTkLabel(
