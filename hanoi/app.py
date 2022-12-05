@@ -68,12 +68,17 @@ class App(ctk.CTk):
     State.mode = "demo"
   
   def fil_rouge_view(self):
+    # Arrête le mode auto s'il est activé
+    if self.right_frame.auto_frame.auto_mode:
+      self.right_frame.auto_frame.toggle_auto()
+      
     self.bottom_frame.grid_forget()
     self.fil_control_frame.stage()
 
     self.right_frame.fil_rouge_view()
 
     State.mode = "fil rouge"
+
   
   def switch_view(self):
     if State.mode == "demo":
