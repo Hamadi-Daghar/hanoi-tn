@@ -15,7 +15,7 @@ class AutoFrame(ctk.CTkFrame):
     #grid
     self.columnconfigure(0, weight = 1)
     self.columnconfigure(1, weight = 3)
-    self.rowconfigure((0,1,2,3,4,5), weight = 1)
+    self.rowconfigure((0,1,2,3,4), weight = 1)
 
     self.parent = parent
     self.colors = parent.colors
@@ -34,14 +34,16 @@ class AutoFrame(ctk.CTkFrame):
       file = os.path.join(os.path.dirname(__file__), "..", "assets", "right.png")
     ).subsample(2)
 
-    #titre
+    # Contenu
+
+    # Titre
     self.title = ctk.CTkLabel(
       self, text = "Mode automatique",
       text_color = self.colors.get("dark_blue"),
-      text_font = font.Font(size = 25, family = self.font_family)
+      text_font = font.Font(size = 25, family = self.font_family, weight = "bold")
     )
     self.title.grid(
-      column = 0, row = 0, columnspan = 2
+      column = 0, row = 0, columnspan = 2, pady = 5
     )
 
     self.auto_button = ctk.CTkButton(
@@ -54,10 +56,8 @@ class AutoFrame(ctk.CTkFrame):
       command = self.toggle_auto
     )
     self.auto_button.grid(
-      column = 0, row = 1, columnspan = 2, pady = 10
+      column = 0, row = 1, columnspan = 2, pady = 25
     )
-
-    self.separator1 = ctk.CTkLabel(self, text = "").grid(column = 0, row = 2, pady = 10)
 
     self.speed_readout = ctk.CTkLabel(
       self, 
@@ -67,7 +67,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.font_family)
     )
     self.speed_readout.grid(
-      column = 0, row = 3, sticky = ctk.E
+      column = 0, row = 2, sticky = ctk.E
     )
 
     self.speed_unit = ctk.CTkLabel(
@@ -76,7 +76,7 @@ class AutoFrame(ctk.CTkFrame):
       text_font = font.Font(size = 25, family = self.font_family)
     )
     self.speed_unit.grid(
-      column = 1, row = 3, sticky = ctk.W
+      column = 1, row = 2, sticky = ctk.W
     )
 
     self.speed_slider = ctk.CTkSlider(
@@ -91,13 +91,13 @@ class AutoFrame(ctk.CTkFrame):
     )
     self.speed_slider.set(0)
     self.speed_slider.grid(
-      column = 0, row = 4, columnspan = 2
+      column = 0, row = 3, columnspan = 2
     )
 
     ttk.Separator(
       self, orient = "horizontal"
     ).grid(
-      column = 0, row = 5, pady = 15, columnspan = 2, sticky = ctk.EW 
+      column = 0, row = 4, pady = 5, columnspan = 2, sticky = ctk.EW 
     )
 
     # self.separator2 = ctk.CTkLabel(

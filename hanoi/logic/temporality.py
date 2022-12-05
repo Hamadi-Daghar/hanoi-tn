@@ -1,4 +1,21 @@
+import datetime
 import math  
+
+
+month_names: dict = {
+  1 : "janvier",
+  2 : "février",
+  3 : "mars",
+  4 : "avril",
+  5 : "mai",
+  6 : "juin",
+  7 : "juillet",
+  8 : "août",
+  9 : "septembre",
+  10 : "octobre",
+  11 : "novembre",
+  12 : "décembre"
+}
 
 def render_time(seconds: int)-> str:
   """Retourne une chaîne de caractère représentant le laps de temps "seconds" en jours, heures, minutes et secondes.
@@ -65,3 +82,21 @@ def remaining_time(state: int, speed: int)-> int:
   moves:int = (2**20 - 1) - state
 
   return math.ceil(moves/speed)
+
+def end_date(seconds: int)-> str:
+  """Retourne une chaîne de caractères représentant la date de fin d'une opération de seconds secondes commençant maintenant.
+  Si cette date est aujourd'hui, affiche "Aujourd'hui ! (HH:MM)", où HH:MM est l'heure de fin.
+
+  Args:
+      seconds (int): Le temps pris par l'opération, en secondes.
+
+  Returns:
+      str: La chaîne de caractères représentant la date de fin.
+  """
+  now = datetime.datetime.now()
+  then = now + datetime.timedelta(seconds = seconds)
+
+  if now.date() == then.date():
+    return f"Aujourd'hui ! ({0 if then.hour < 10 else ''}{then.hour}:{0 if then.minute < 10 else ''}{then.minute})"
+  else:
+    return f"{then.day} {month_names[then.month]} {then.year}"

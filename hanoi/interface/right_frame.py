@@ -9,6 +9,8 @@ import hanoi.app as app
 import hanoi.interface.auto_frame as auto_frame
 import hanoi.interface.fil_rouge_frame as fil_rouge_frame
 import hanoi.interface.info_frame as info_frame
+from hanoi.logic.state import State
+import hanoi.logic.data as data
 
 class RightFrame(ctk.CTkFrame):
 
@@ -90,12 +92,10 @@ class RightFrame(ctk.CTkFrame):
     self.mode_switch.grid(
       column = 0, row = 3, 
       columnspan = 2,
-      pady = 50,
+      pady = (10,50),
       sticky = ctk.S
     )
     ####################
-
-    self.demo_view()
 
 
 
@@ -111,13 +111,35 @@ class RightFrame(ctk.CTkFrame):
   def demo_view(self)-> None: 
     """Passe à la vue du mode Démo.
     """
+    #Changement de frame : auto_frame
     self.fil_rouge_frame.grid_forget()
     self.auto_frame.stage()
+
+    #MaJ texte de mode_switch
     self.mode_switch.configure(text = "Fil Rouge")
+
+    #Changement de vue de info_frame
+    self.info_frame.demo_view()
+
+    #Réinitialisation de l'état
+    State.start_state()
+    State.move_display = False
+    self.parent.update_display()
   
   def fil_rouge_view(self)-> None:
     """Passe à la vue du mode Fil Rouge.
     """
+    #Changement de frame : fil_rouge_frame
     self.auto_frame.grid_forget()
     self.fil_rouge_frame.stage()
+
+    #MaJ texte de mode_switch
     self.mode_switch.configure(text = "Démo")
+    
+    #Changement de vue de info_frame
+    self.info_frame.fil_rouge_view()
+
+    #Préparation de l'état
+    State.state_by_number(data.read_state())
+    State.move_display = True
+    self.parent.update_display()
