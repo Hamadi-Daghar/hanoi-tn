@@ -111,7 +111,7 @@ class Numpad(ctk.CTkToplevel):
         self.entry.insert(0, "Débloqué !")
       else:
         self.entry.delete(0, len(self.entry.get()))
-        self.entry.insert(0, "Non !")
+        self.entry.insert(0, "Code faux !")
     else:
       if not self.entry.get().strip("-").isnumeric():
         self.entry.delete(0, len(self.entry.get()))
