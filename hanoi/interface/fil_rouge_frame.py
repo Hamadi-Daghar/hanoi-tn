@@ -95,6 +95,16 @@ class FilRougeFrame(ctk.CTkFrame):
       column = 0, row = 3, columnspan = 3
     )
 
+    self.numpad_button = ctk.CTkButton(
+      self, text = "Manuel",
+      command = self.show_numpad,
+      text_color = self.colors.get("dark_blue"),
+      text_font = font.Font(size = 20, family = self.font_family)
+    )
+    self.numpad_button.grid(
+      column = 0, row = 4, columnspan = 3, pady = (20, 0)
+    )
+
   def stage(self)-> None:
     """Fait apparaître la frame sur l'interface.
     """
@@ -111,7 +121,10 @@ class FilRougeFrame(ctk.CTkFrame):
     """
     self.visiteurs.configure(text = f"{nombre}ème" if nombre > 1 else f"{nombre}er")
   
-  def save(self)->None:
-    State.increment_state(1)
+  def save(self, increment = 1)->None:
+    State.increment_state(increment)
     data.save_now()
     self.parent.parent.update_display()
+  
+  def show_numpad(self)->None:
+    self.parent.parent.show_numpad()
