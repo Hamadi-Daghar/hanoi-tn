@@ -97,8 +97,6 @@ class RightFrame(ctk.CTkFrame):
     )
     ####################
 
-    self.demo_view()
-
 
 
   
@@ -125,6 +123,8 @@ class RightFrame(ctk.CTkFrame):
 
     #Réinitialisation de l'état
     State.start_state()
+    State.move_display = False
+    self.parent.update_display()
   
   def fil_rouge_view(self)-> None:
     """Passe à la vue du mode Fil Rouge.
