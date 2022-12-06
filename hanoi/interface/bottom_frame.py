@@ -45,7 +45,7 @@ class BottomFrame(ctk.CTkFrame):
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blue_hover"),
       image = self.previous_icon,
-      command = lambda: self.increment_state(-State.speed)
+      command = lambda: self.increment_state(-1)
     )
     self.back_button.grid(
       column = 1, row = 0, rowspan = 3, sticky = ctk.NSEW, padx = 5, pady = 2, ipady = 5
@@ -58,7 +58,7 @@ class BottomFrame(ctk.CTkFrame):
       fg_color = self.colors.get("blue"),
       hover_color = self.colors.get("blue_hover"),
       image = self.next_icon,
-      command = lambda: self.increment_state(State.speed)
+      command = lambda: self.increment_state(1)
     )
     self.forward_button.grid(
       column = 2, row = 0, rowspan = 3, sticky = ctk.NSEW, padx = 5, pady = 2, ipady = 5
