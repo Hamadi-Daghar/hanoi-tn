@@ -61,6 +61,7 @@ class App(ctk.CTk):
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (State.move_display) else "Mouvements")
     )
+    self.bottom_frame.update_buttons()
     self.canvas.update_display()
   
   def demo_view(self):

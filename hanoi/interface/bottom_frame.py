@@ -152,14 +152,11 @@ class BottomFrame(ctk.CTkFrame):
 
     # Boutons puissances de 2
 
-    for i in range(1,5):
+    for i in range(1,4):
 
       # boutons - 2^(n-1)
       
-      if i == 4:
-        val = -(2**((State.disk_amount - 2) + 1) - 1)
-      else:
-        val = -(2**(i+1) - 1)
+      val = -(2**(i+1) - 1)
       ctk.CTkButton( # -
         self,
         text = str(val), width = 20,
@@ -173,10 +170,7 @@ class BottomFrame(ctk.CTkFrame):
 
       # boutons 2^(n-1)
 
-      if i == 4:
-        val = 2**((State.disk_amount - 2) + 1) - 1
-      else:
-        val = 2**(i+1) - 1
+      val = 2**(i+1) - 1
       ctk.CTkButton( # +
         self,
         text = str(val), width = 20,
@@ -187,6 +181,10 @@ class BottomFrame(ctk.CTkFrame):
       ).grid(
         column = 8+i, row = 2, rowspan = 2, sticky = ctk.NSEW, padx = 5, pady = (7, 2)
       )
+    
+    #### boutons max pour update
+
+    self.update_buttons()
     
     # label 2^n - 1
 
@@ -224,3 +222,31 @@ class BottomFrame(ctk.CTkFrame):
     padx = 0, pady = 0,
     sticky = ctk.NSEW
   )
+
+  def update_buttons(self):
+      
+    val = -(2**((State.disk_amount - 2) + 1) - 1)
+    self.button_minus_two = ctk.CTkButton( # -
+      self,
+      text = str(val), width = 20,
+      text_font = font.Font(size = 25, family = self.font_family),
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blue_hover"),
+      command = lambda val=val: self.increment_state(val)
+    )
+    self.button_minus_two.grid(
+      column = 4, row = 2, rowspan = 2, sticky = ctk.NSEW, padx = 5, pady = (7, 2)
+    )
+
+    val = 2**((State.disk_amount - 2) + 1) - 1
+    self.button_plus_two = ctk.CTkButton( # +
+      self,
+      text = str(val), width = 20,
+      text_font = font.Font(size = 25, family = self.font_family),
+      fg_color = self.colors.get("blue"),
+      hover_color = self.colors.get("blue_hover"),
+      command = lambda val=val: self.increment_state(val)
+    )
+    self.button_plus_two.grid(
+      column = 12, row = 2, rowspan = 2, sticky = ctk.NSEW, padx = 5, pady = (7, 2)
+    )
