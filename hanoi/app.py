@@ -4,6 +4,7 @@ import json
 import hanoi.interface.bottom_frame as bottom_frame
 import hanoi.interface.fil_control_frame as fil_control_frame
 import hanoi.interface.hanoi_canvas as  hanoi_canvas
+import hanoi.interface.numpad as numpad
 import hanoi.interface.right_frame as right_frame 
 from hanoi.logic.state import State
 
@@ -46,6 +47,8 @@ class App(ctk.CTk):
       column = 1, row = 0, rowspan = 2, sticky = ctk.NSEW
     )
 
+    # self.numpad = numpad.Numpad(self, fg_color = self.colors.get("grey"))
+    # self.numpad.withdraw()
     
     self.demo_view()
     self.update_display()
@@ -71,7 +74,7 @@ class App(ctk.CTk):
     # Arrête le mode auto s'il est activé
     if self.right_frame.auto_frame.auto_mode:
       self.right_frame.auto_frame.toggle_auto()
-      
+
     self.bottom_frame.grid_forget()
     self.fil_control_frame.stage()
 
@@ -85,3 +88,7 @@ class App(ctk.CTk):
       self.fil_rouge_view()
     else:
       self.demo_view()
+  
+  def show_numpad(self):
+    self.numpad = numpad.Numpad(self, fg_color = self.colors.get("grey"))
+    self.eval(f"tk::PlaceWindow {str(self.numpad)} center")
