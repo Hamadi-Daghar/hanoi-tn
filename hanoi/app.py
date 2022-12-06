@@ -32,8 +32,6 @@ class App(ctk.CTk):
     self.rowconfigure(0, weight = 0)
     self.rowconfigure(1, weight = 1)
 
-    State.change_disk_amount(6)
-
     #canvas
     self.canvas = hanoi_canvas.HanoiCanvas(self, width = 1500, height = 950, bg = "#ffffff", cursor = "circle")
     self.canvas.grid(column = 0, row = 0, sticky = ctk.NSEW)

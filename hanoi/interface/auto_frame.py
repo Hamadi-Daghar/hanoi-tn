@@ -117,7 +117,7 @@ class AutoFrame(ctk.CTkFrame):
     #TODO : toggle icon
     if self.auto_mode is True:
       self.auto_run()
-    else:
+    elif self.identifier != "":
       self.after_cancel(self.identifier)
       self.identifier = ""
 
