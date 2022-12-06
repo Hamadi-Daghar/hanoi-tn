@@ -80,8 +80,7 @@ class InfoFrame(ctk.CTkFrame):
     state = State.state
     
     self.progress.configure(
-      text = f"Progression : { format( round(((state)/(2**20 - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
-      # text = format( round(((state+1)/(2**20))*100, 6), 'f').rstrip('0').rstrip('.') + " %"
+      text = f"Progression : { format( round(((state)/(2**(State.disk_amount) - 1))*100, 6), 'f').rstrip('0').rstrip('.') } %"
     )
 
     self.demo_frame.update_display()

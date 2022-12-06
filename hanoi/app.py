@@ -6,6 +6,7 @@ import hanoi.interface.fil_control_frame as fil_control_frame
 import hanoi.interface.hanoi_canvas as  hanoi_canvas
 import hanoi.interface.numpad as numpad
 import hanoi.interface.right_frame as right_frame 
+import hanoi.logic.data as data
 from hanoi.logic.state import State
 
 class App(ctk.CTk):
@@ -30,6 +31,8 @@ class App(ctk.CTk):
     self.columnconfigure(1, weight = 1)
     self.rowconfigure(0, weight = 0)
     self.rowconfigure(1, weight = 1)
+
+    State.change_disk_amount(6)
 
     #canvas
     self.canvas = hanoi_canvas.HanoiCanvas(self, width = 1500, height = 950, bg = "#ffffff", cursor = "circle")
@@ -81,6 +84,12 @@ class App(ctk.CTk):
     self.right_frame.fil_rouge_view()
 
     State.mode = "fil rouge"
+    State.change_disk_amount(20)
+
+    #Préparation de l'état
+    State.state_by_number(data.read_state())
+    State.move_display = True
+    self.update_display()
 
   
   def switch_view(self):

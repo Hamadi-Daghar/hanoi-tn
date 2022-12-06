@@ -20,6 +20,21 @@ class State():
   mode: str = ""
 
   @classmethod
+  def change_disk_amount(cls, disk_amount: int)-> None:
+    cls.disk_amount = disk_amount
+    cls.start_state()
+  
+  @classmethod
+  def increment_disk_amount(cls, increment: int)-> None:
+    new_amount = cls.disk_amount + increment
+    if new_amount > 20:
+      new_amount = 20
+    elif new_amount < 2:
+      new_amount = 2
+    cls.disk_amount = new_amount
+    cls.start_state()
+
+  @classmethod
   def start_state(cls)-> None:
     #ok
     cls.state = 0
@@ -66,4 +81,4 @@ class State():
 
 
   def is_end_state():
-    return State.state == 2**20 - 1
+    return State.state == 2**(State.disk_amount) - 1

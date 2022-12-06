@@ -71,7 +71,7 @@ class InfoDemoSubframe(ctk.CTkFrame):
     ))
 
     self.remaining_time.configure(text = (
-      "Temps restant : " + temporality.render_time(temporality.remaining_time(state, State.speed))
+      "Temps restant : " + temporality.render_time(temporality.remaining_time(state, State.speed, State.disk_amount))
     ))
   
   def stage(self)-> None:
