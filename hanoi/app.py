@@ -1,9 +1,10 @@
-import customtkinter as ctk
 import json
+
+import customtkinter as ctk
 
 import hanoi.interface.bottom_frame as bottom_frame
 import hanoi.interface.fil_control_frame as fil_control_frame
-import hanoi.interface.hanoi_canvas as  hanoi_canvas
+import hanoi.interface.hanoi_canvas as hanoi_canvas
 import hanoi.interface.numpad as numpad
 import hanoi.interface.right_frame as right_frame 
 import hanoi.logic.data as data
@@ -61,7 +62,6 @@ class App(ctk.CTk):
     self.bottom_frame.display_toggle.configure(
       text = ("États" if (State.move_display) else "Mouvements")
     )
-    self.bottom_frame.update_buttons()
     self.canvas.update_display()
   
   def demo_view(self):

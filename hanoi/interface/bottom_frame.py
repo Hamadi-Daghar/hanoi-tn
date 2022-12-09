@@ -183,7 +183,9 @@ class BottomFrame(ctk.CTkFrame):
       )
     
     #### boutons max pour update
-
+    
+    self.button_minus_two = None
+    self.button_plus_two = None
     self.update_buttons()
     
     # label 2^n - 1
@@ -224,6 +226,11 @@ class BottomFrame(ctk.CTkFrame):
   )
 
   def update_buttons(self):
+
+    if self.button_minus_two != None:
+      self.button_minus_two.grid_forget()
+    if self.button_plus_two != None:
+      self.button_plus_two.grid_forget()
       
     val = -(2**((State.disk_amount - 2) + 1) - 1)
     self.button_minus_two = ctk.CTkButton( # -

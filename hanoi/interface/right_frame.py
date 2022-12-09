@@ -128,10 +128,12 @@ class RightFrame(ctk.CTkFrame):
   def add_disk(self):
     State.increment_disk_amount(1)
     self.parent.update_display()
+    self.parent.bottom_frame.update_buttons()
 
   def remove_disk(self):
     State.increment_disk_amount(-1)
     self.parent.update_display()
+    self.parent.bottom_frame.update_buttons()
   
   def toggle_window(self):
     if self.parent.attributes("-fullscreen") == True:
