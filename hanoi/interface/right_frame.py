@@ -97,8 +97,43 @@ class RightFrame(ctk.CTkFrame):
     )
     ####################
 
+    #Disk amount
+
+    self.disk_less = ctk.CTkButton(
+      self, text = "-1",
+      text_font = font.Font(size = 20),
+      text_color = self.colors.get("dark_blue"),
+      command = self.remove_disk
+    )
+    self.disk_less.grid(
+      column = 0, row = 4,
+      pady = 5, padx = 5,
+      sticky = ctk.N + ctk.E
+    )
+
+    self.disk_more = ctk.CTkButton(
+      self, text = "+1",
+      text_font = font.Font(size = 20),
+      text_color = self.colors.get("dark_blue"),
+      command = self.add_disk
+    )
+    self.disk_more.grid(
+      column = 1, row = 4,
+      pady = 5, padx = 5,
+      sticky = ctk.N + ctk.W
+    )
 
 
+  
+  def add_disk(self):
+    State.increment_disk_amount(1)
+    self.parent.update_display()
+    self.parent.bottom_frame.update_buttons()
+
+  def remove_disk(self):
+    State.increment_disk_amount(-1)
+    self.parent.update_display()
+    self.parent.bottom_frame.update_buttons()
   
   def toggle_window(self):
     if self.parent.attributes("-fullscreen") == True:
@@ -138,8 +173,3 @@ class RightFrame(ctk.CTkFrame):
     
     #Changement de vue de info_frame
     self.info_frame.fil_rouge_view()
-
-    #Préparation de l'état
-    State.state_by_number(data.read_state())
-    State.move_display = True
-    self.parent.update_display()

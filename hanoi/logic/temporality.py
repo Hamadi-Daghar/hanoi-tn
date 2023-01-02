@@ -70,16 +70,18 @@ def plural(value: int)-> str:
   return 's' if value > 1 else ''
 
 
-def remaining_time(state: int, speed: int)-> int:
+def remaining_time(state: int, speed: int, disk_amount: int)-> int:
   """Retourne le temps restant pour résoudre les tours de Hanoï, à partir de l'état courant "state" et de la vitesse sélectionnée "speed".
 
   Args:
       state (int): L'état courant.
+      speed (int): La vitesse actuelle de l'exécution automatique.
+      disk_amount (int): Le nombre de disques.
 
   Returns:
       int: Le nombre de secondes pour passer de l'état courant à l'état 2**20 à la vitesse 'speed' (en mouvement/s), arrondi à la seconde supérieure.
   """
-  moves:int = (2**20 - 1) - state
+  moves:int = (2**(disk_amount) - 1) - state
 
   return math.ceil(moves/speed)
 

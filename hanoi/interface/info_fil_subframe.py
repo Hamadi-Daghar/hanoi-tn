@@ -141,10 +141,10 @@ class InfoFilSubframe(ctk.CTkFrame):
 
     state = State.state
 
-    self.result_second.configure(text = temporality.end_date(temporality.remaining_time(state, 1)))
-    self.result_minute.configure(text = temporality.end_date(temporality.remaining_time(state, 1/60)))
-    self.result_hour.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60))))
-    self.result_day.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60*24))))
+    self.result_second.configure(text = temporality.end_date(temporality.remaining_time(state, 1, State.disk_amount)))
+    self.result_minute.configure(text = temporality.end_date(temporality.remaining_time(state, 1/60, State.disk_amount)))
+    self.result_hour.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60), State.disk_amount)))
+    self.result_day.configure(text = temporality.end_date(temporality.remaining_time(state, 1/(60*60*24), State.disk_amount)))
   
   def stage(self)-> None:
     """Fait apparaître la frame sur l'interface.
