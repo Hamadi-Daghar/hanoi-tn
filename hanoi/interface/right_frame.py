@@ -4,8 +4,6 @@ import tkinter.font as font
 
 import customtkinter as ctk
 
-import hanoi.app as app
-
 import hanoi.interface.auto_frame as auto_frame
 import hanoi.interface.fil_rouge_frame as fil_rouge_frame
 import hanoi.interface.info_frame as info_frame
